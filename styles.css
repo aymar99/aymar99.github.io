@@ -15,7 +15,7 @@ body {
   text-align: center;
   --color: rgba(30, 30, 30);
   --bgColor: #ffff;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .content {
