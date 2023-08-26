@@ -17,6 +17,10 @@ body {
   --bgColor: #ffff;
 }
 
+html,body{
+    overflow-x: hidden;
+}
+
 .content {
   margin: auto;
   width: 92%;
@@ -170,6 +174,7 @@ h1 {
   list-style: none;
   width: min(60rem, 90%);
   margin-inline: auto;
+  padding-left: 0;
 }
 
 /* line */
@@ -307,7 +312,7 @@ h1 {
   bottom: 0.25rem;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 30rem) {
   .content {
     margin: auto;
     width: 85%;
@@ -315,7 +320,7 @@ h1 {
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 50rem) {
   .content {
     margin: auto;
     width: 80%;
@@ -353,7 +358,7 @@ h1 {
   }
 }
 
-@media screen and (min-width: 1040px) {
+@media screen and (min-width: 65rem) {
   .content {
     margin: auto;
     width: 73%;
@@ -391,7 +396,7 @@ h1 {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 75rem) {
   .content {
     margin: auto;
     width: 70%;
