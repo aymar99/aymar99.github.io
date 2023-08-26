@@ -17,14 +17,9 @@ body {
   --bgColor: #ffff;
 }
 
-html,body{
-    overflow-x: hidden;
-}
-
 .content {
   margin: auto;
   width: 92%;
-  padding: 2rem;
 }
 .aboutme, .contact-links {
   list-style: none;
@@ -316,7 +311,6 @@ h1 {
   .content {
     margin: auto;
     width: 85%;
-    padding: 2rem;
   }
 }
 
@@ -324,7 +318,6 @@ h1 {
   .content {
     margin: auto;
     width: 80%;
-    padding: 2rem;
   }
   .career-journey {
     grid-template-columns: 1fr var(--line-w) 1fr;
@@ -362,7 +355,6 @@ h1 {
   .content {
     margin: auto;
     width: 73%;
-    padding: 2rem;
   }
   .career-journey {
     grid-template-columns: 1fr var(--line-w) 1fr;
@@ -400,7 +392,6 @@ h1 {
   .content {
     margin: auto;
     width: 70%;
-    padding: 2rem;
   }
 
   .skills {
