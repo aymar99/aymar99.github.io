@@ -307,7 +307,7 @@ h1 {
   bottom: 0.25rem;
 }
 
-@media (min-width: 30rem) {
+@media screen and (min-width: 480px) {
   .content {
     margin: auto;
     width: 85%;
@@ -315,7 +315,7 @@ h1 {
   }
 }
 
-@media (min-width: 50rem) {
+@media screen and (min-width: 800px) {
   .content {
     margin: auto;
     width: 80%;
@@ -353,7 +353,7 @@ h1 {
   }
 }
 
-@media (min-width: 65rem) {
+@media screen and (min-width: 1040px) {
   .content {
     margin: auto;
     width: 73%;
@@ -391,7 +391,7 @@ h1 {
   }
 }
 
-@media (min-width: 75rem) {
+@media screen and (min-width: 1200px) {
   .content {
     margin: auto;
     width: 70%;
