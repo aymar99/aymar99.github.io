@@ -53,14 +53,10 @@ body {
 }
 
 .aboutme li:nth-child(4)::before {
-  content: "\1F372";
-}
-
-.aboutme li:nth-child(5)::before {
   content: "\1F58A";
 }
 
-.aboutme li:nth-child(6)::before {
+.aboutme li:nth-child(5)::before {
   content: "\1F4A1";
 }
 
@@ -311,14 +307,21 @@ h1 {
 @media screen and (min-width: 30rem) {
   .content {
     margin: auto;
-    width: 85%;
+    width: 70%;
   }
 }
 
-@media screen and (min-width: 50rem) {
+@media screen and (min-width: 40rem) {
   .content {
     margin: auto;
-    width: 80%;
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 55rem) {
+  .content {
+    margin: auto;
+    width: 70%;
   }
   .career-journey {
     grid-template-columns: 1fr var(--line-w) 1fr;
@@ -355,7 +358,7 @@ h1 {
 @media screen and (min-width: 65rem) {
   .content {
     margin: auto;
-    width: 73%;
+    width: 65%;
   }
   .career-journey {
     grid-template-columns: 1fr var(--line-w) 1fr;
@@ -392,7 +395,7 @@ h1 {
 @media screen and (min-width: 75rem) {
   .content {
     margin: auto;
-    width: 70%;
+    width: 60%;
   }
 
   .skills {
@@ -428,4 +431,22 @@ h1 {
   .career-journey li:nth-child(odd) .date {
     border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
   }
+}
+
+/* Style the button that is used to open and close the collapsible content */
+#collapsible {
+  background-color: var(--bgColor);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+#collapsible-content {
+  display: none;
+  overflow: hidden;
+}
+
+.cjourney span{
+  color: var(--oxblood-color);
 }

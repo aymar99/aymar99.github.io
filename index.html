@@ -31,68 +31,57 @@
 			<li>Minimalist</li>
       <!-- (If mindful spending counts!) -->
 			<li>Atheist </li>
-			<li>Eggitarian </li>
 			<li>Amateur writer</li>
       <!-- (Here's my blog ...) -->
-			<li>Technology and Finance enthusiast</li>
+			<li>Tech and Finance enthusiast</li>
       <!-- (Learning and growing every day) -->
 		</ul>	
-		<h4 class="heading-brwn">Career journey</h4>
+		<h4 class="heading-brwn cjourney">Career journey<button type="button" id="collapsible"><span id="toggle-symbol">&#9654;</span></button></h4>
+    <div id="collapsible-content">
 		<ul class="career-journey">
       <li class="career">
         <div class="date">Present</div>
-        <div class="title">Senior software engineer - <a style="color: inherit;" href="https://www.paypal.com/in/home">Paypal</a></div>
-        <div class="descr">Just started, will be updated!</div></li>
+        <div class="title">Software engineer 2 <a style="color: inherit;" href="https://www.paypal.com/in/home">Paypal</a></div>
+        <div class="descr">Just started, will update!</div></li>
         <li class="career">
           <div class="date">July 2022</div>
-          <div class="title">Senior software engineer - <a style="color: inherit;" href="https://www.applieddatafinance.com/">ADF datascience</a></div>
-          <div class="descr">My first official job, when i truly became a professional, best ever career start!</div>
+          <div class="title">Senior software engineer <a style="color: inherit;" href="https://www.applieddatafinance.com/">ADF datascience</a></div>
+          <div class="descr">My first full time job, where i truly became a professional, best ever career start!</div>
         </li>
         <li class="career">
           <div class="date">Sep 2020</div>
-          <div class="title">Engineering graduate - <a style="color: inherit;" href="https://www.ssn.edu.in/">SSNCE</a></div>
-          <div class="descr">Got into such a privileged institution through merit. I remember this as my first achievement.</div>
+          <div class="title">Engineering graduate <a style="color: inherit;" href="https://www.ssn.edu.in/">SSNCE</a></div>
+          <div class="descr">Such a beautiful place SSN was. Where it all started. :')</div>
         </li>
         <li class="career">
-          <div class="date">Dec 2020</div>
+          <div class="date">Dec 2019</div>
           <div class="title">Software engineer intern - <a style="color: inherit;" href="https://careers.caterpillar.com/en/">Caterpillar</a></div>
           <div class="descr">A bird's eye view on how my SDE career will be.</div>
         </li>
       </ul>
+    </div>
       <h4 class="heading-green">Wanna stalk me more? the below links may help</h4>  
       <ul class="contact-links">
         <li><a style="text-decoration: none;color: inherit;" href="https://twitter.com/aymar_99">Twitter</a></li>
         <li><a style="text-decoration: none;color: inherit;" href="https://www.linkedin.com/in/aymar99/">LinkedIn</a></li>
         <li><a style="text-decoration: none;color: inherit;" href="https://github.com/aymar99">Github</a></li>
       </ul> 
-      <!-- <h4 class="heading-brwn">My skills (Some flexing, will be removed once i find a less cringe item to flex about here)</h4> 
-      <div class="skills">
-        <span class="tag-cloud">JUnit</span>
-        <span class="tag-cloud">ANTLR</span>
-        <span class="tag-cloud">Java</span>
-        <span class="tag-cloud">NoSQL</span>
-        <span class="tag-cloud">Jenkins</span>
-        <span class="tag-cloud">Docker</span>
-        <span class="tag-cloud">Groovy</span>
-        <span class="tag-cloud">Shell Scripting</span>
-        <span class="tag-cloud">Gradle</span>
-        <span class="tag-cloud">Maven</span>
-        <span class="tag-cloud">JavaCC</span>
-        <span class="tag-cloud">Drools</span>
-        <span class="tag-cloud">Spring</span>
-        <span class="tag-cloud">gRPC</span>
-        <span class="tag-cloud">MySQL</span>
-        <span class="tag-cloud">Elastic stack (ELK)</span>
-        <span class="tag-cloud">Gatling</span>
-        <span class="tag-cloud">Scala</span>
-        <span class="tag-cloud">Ansible</span>
-        <span class="tag-cloud">Scala</span>
-        <span class="tag-cloud">Stored procedures</span>
-        <span class="tag-cloud">.Net framework</span>
-        <span class="tag-cloud">Vagrant</span>
-        <span class="tag-cloud">Dagger</span>
-        <span class="tag-cloud">REST API</span>
-      </div> -->
     </div>
+    <script>
+var collapsibleElement = document.getElementById("collapsible");
+var toggleElement=document.getElementById("toggle-symbol")
+var i;
+  collapsibleElement.addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = document.getElementById("collapsible-content");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      toggleElement.innerHTML = "&#9654;";
+    } else {
+      content.style.display = "block";
+      toggleElement.innerHTML = "&#9660;";
+    }
+  });
+</script>
   </body>
   </html>
