@@ -219,24 +219,24 @@ h1 {
 }
 
 
-.career-journey li:nth-child(1) .date{
+.career-journey li:nth-child(4) .date{
   background-color: var(--light-backboard-color);
   --accent-color: var(--light-backboard-color);
 }
 
-.career-journey li:nth-child(2) .date{
+.career-journey li:nth-child(3) .date{
   background-color: var(--dark-tan-color);
   --accent-color: var(--dark-tan-color);
 }
 
-.career-journey li:nth-child(3) .date{
+.career-journey li:nth-child(2) .date{
   background-color: var(--oxblood-color);
   --accent-color: var(--oxblood-color);
 }
 
-.career-journey li:nth-child(4) .date{
-  background-color: var(--light-grain-color);
-  --accent-color: var(--light-grain-color);
+.career-journey li:nth-child(1) .date{
+  background-color: var(--dark-backboard-color);
+  --accent-color: var(--dark-backboard-color);
 }
 
 /* date flap */
