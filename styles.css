@@ -22,10 +22,14 @@ body {
   margin: auto;
   width: 92%;
 }
-.aboutme, .contact-links {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+a{
+  color: inherit;
 }
 
 .contact-links li:nth-child(1)::before {
@@ -302,6 +306,10 @@ h1 {
 .career-journey li .descr::before {
   z-index: -1;
   bottom: 0.25rem;
+}
+
+.blog li:not(:last-child) { 
+   margin-bottom: 10px;  
 }
 
 @media screen and (min-width: 30rem) {
