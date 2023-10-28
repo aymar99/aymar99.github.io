@@ -12,6 +12,7 @@ body {
   padding: 0;
   font-family: 'Nunito', sans-serif;
   font-family: 'Nunito Sans', sans-serif;
+  font-size: 14pt;
   text-align: center;
   --color: rgba(30, 30, 30);
   --bgColor: #ffff;
@@ -21,6 +22,8 @@ body {
 .content {
   margin: auto;
   width: 92%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 ul {
   list-style: none;
@@ -66,33 +69,29 @@ a{
 
 .skills{
 	display: flex;
-	flex-wrap: wrap;
-  text-align: center;
+  margin: auto;
 }
 
-.skills *{
-	border-radius: 1rem;
+.skills span{
 	box-shadow: 0.1rem 0.1rem white;
-	padding: 0.2rem;
-	margin: 0.2rem;
-  display: inline-block;
-  color: #36454F;
+  color: white;
   padding: 8px 20px;
   font-family: Arial;
   border-radius: 1rem;
-  background-color: var(--light-grain-color);
-  display: table;
+  background-color: var(--light-backboard-color);
   margin: 0.2rem auto;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
 }
 
-.skills *:nth-child(2n){
+.skills span:nth-child(2n){
   color: white;
   background-color: var(--dark-tan-color);
 }
 
-.skills *:nth-child(3n){
-  color: white;
-  background-color: var(--light-backboard-color);
+.skills span:hover{
+   box-shadow: 0 0 11px rgba(33,33,33,.3); 
 }
 
 .bar {
@@ -118,6 +117,13 @@ a{
   color: var(--oxblood-color);
   font-family: 'Nunito', sans-serif;
 }	
+
+.heading-lbrwn{
+  width: 100%;
+  text-align: center;
+  color: var(--dark-tan-color);
+  font-family: 'Nunito', sans-serif;
+} 
 
 .segment:nth-child(1) {
   background-color: var(--dark-backboard-color); /* Dark Blackboard */
@@ -309,10 +315,13 @@ h1 {
 }
 
 .blog li:not(:last-child) { 
-   margin-bottom: 10px;  
+ margin-bottom: 10px;  
 }
 
 @media screen and (min-width: 30rem) {
+  .skills{
+    width: 70%;
+  }
   .content {
     margin: auto;
     width: 70%;
@@ -320,6 +329,9 @@ h1 {
 }
 
 @media screen and (min-width: 40rem) {
+  .skills{
+    width: 50%;
+  }
   .content {
     margin: auto;
     width: 60%;
@@ -327,6 +339,9 @@ h1 {
 }
 
 @media screen and (min-width: 55rem) {
+  .skills{
+    width: 35%;
+  }
   .content {
     margin: auto;
     width: 70%;
@@ -364,10 +379,12 @@ h1 {
 }
 
 @media screen and (min-width: 65rem) {
+
   .content {
     margin: auto;
     width: 65%;
   }
+
   .career-journey {
     grid-template-columns: 1fr var(--line-w) 1fr;
   }
@@ -405,9 +422,8 @@ h1 {
     margin: auto;
     width: 60%;
   }
-
-  .skills {
-    margin: 3rem;
+  .skills{
+    width: 30%;
   }
   .career-journey {
     grid-template-columns: 1fr var(--line-w) 1fr;

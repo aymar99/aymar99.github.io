@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Ramya</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap" rel="stylesheet">	
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<div class="bar">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>	
+	<div class="content">
+
+	</div>
+	<script>
+		var collapsibleElement = document.getElementById("collapsible");
+		var toggleElement=document.getElementById("toggle-symbol")
+		var i;
+		collapsibleElement.addEventListener("click", function() {
+			this.classList.toggle("active");
+			var content = document.getElementById("collapsible-content");
+			if (content.style.display === "block") {
+				content.style.display = "none";
+				toggleElement.innerHTML = "&#9654;";
+			} else {
+				content.style.display = "block";
+				toggleElement.innerHTML = "&#9660;";
+			}
+		});
+	</script>
+</body>
+</html>
