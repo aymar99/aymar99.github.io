@@ -72,7 +72,7 @@ a{
   margin: auto;
 }
 
-.skills span{
+.skills a{
 	box-shadow: 0.1rem 0.1rem white;
   color: white;
   padding: 8px 20px;
@@ -85,13 +85,13 @@ a{
   vertical-align: middle;
 }
 
-.skills span:nth-child(2n){
+.skills a:nth-child(2n){
   color: white;
   background-color: var(--dark-tan-color);
 }
 
-.skills span:hover{
-   box-shadow: 0 0 11px rgba(33,33,33,.3); 
+.skills a:hover{
+ box-shadow: 0 0 11px rgba(33,33,33,.3); 
 }
 
 .bar {
@@ -320,7 +320,7 @@ h1 {
 
 @media screen and (min-width: 30rem) {
   .skills{
-    width: 70%;
+    width: 60%;
   }
   .content {
     margin: auto;
