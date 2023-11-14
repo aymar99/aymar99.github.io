@@ -85,6 +85,19 @@ a{
   vertical-align: middle;
 }
 
+.label_info{
+  box-shadow: 0.1rem 0.1rem white;
+  color: white;
+  padding: 4px 15px;
+  font-family: Arial;
+  border-radius: 1rem;
+  background-color: var(--light-backboard-color);
+  margin: 0.2rem auto;
+  text-align: center;
+  margin-left: 1rem;
+  font-size: 12pt;
+}
+
 .skills a:nth-child(2n){
   color: white;
   background-color: var(--dark-tan-color);
