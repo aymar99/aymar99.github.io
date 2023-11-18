@@ -61,38 +61,75 @@
 				</ul>
 			</div>
 			<h3 class="heading-green">My blogs</h3>
-			<ul class="blog">
-				<li><a href="https://medium.com/@aymar99/letters-from-a-stoic-my-favorite-bits-55e4eff6ce7e">Letters from a stoic — My favorite bits</a>
-				</li> 
-				<li><a href="https://medium.com/@aymar99/introduction-to-the-actor-based-concurrency-model-f8677a3f141b">Introduction to the Actor-based concurrency model</a>
-				</li>         
-			</ul>
-			<h4 class="heading-brwn">Curation of the things that align with my taste</h4>
+			<div id="rss-feed"></div>
+			<h3 class="heading-brwn">Curation of the things that align with my taste</h3>
 			<div class="skills">
 				<a style="text-decoration: none;" href="books.html">Books</a>
 				<a style="text-decoration: none;" href="blogs.html">Blogs</a>
 			</div>
-			<h3 class="heading-green">Wanna stalk me more? the below links may help</h3>  
+			<h4 class="heading-green">Wanna know me more? the below links may help</h4>  
 			<ul class="contact-links">
 				<li><a style="color: inherit;" href="https://twitter.com/aymar_99">Twitter</a></li>
 				<li><a style="color: inherit;" href="https://www.linkedin.com/in/aymar99/">LinkedIn</a></li>
 				<li><a style="color: inherit;" href="https://github.com/aymar99">Github</a></li>
 			</ul> 
+			<p>
+			To check out how the site has evolved <a href="changelog.html">Click here</a>
+			</p>
 		</div>
 		<script>
 			var collapsibleElement = document.getElementById("collapsible");
-			var toggleElement=document.getElementById("toggle-symbol")
+			var toggleElement = document.getElementById("toggle-symbol")
 			var i;
 			collapsibleElement.addEventListener("click", function() {
-				this.classList.toggle("active");
-				var content = document.getElementById("collapsible-content");
-				if (content.style.display === "block") {
-					content.style.display = "none";
-					toggleElement.innerHTML = "&#9654;";
-				} else {
-					content.style.display = "block";
-					toggleElement.innerHTML = "&#9660;";
-				}
+			    this.classList.toggle("active");
+			    var content = document.getElementById("collapsible-content");
+			    if (content.style.display === "block") {
+			        content.style.display = "none";
+			        toggleElement.innerHTML = "&#9654;";
+			    } else {
+			        content.style.display = "block";
+			        toggleElement.innerHTML = "&#9660;";
+			    }
+			});
+			document.addEventListener("DOMContentLoaded", function() {
+			    const rssFeedUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://medium.com/feed/@aymar99');
+
+			    //TODO enhance with session storage
+			    // Function to fetch and display the RSS feed
+			    function fetchAndDisplayRssFeed(url) {
+			        fetch(url)
+			            .then(response => response.text())
+			            .then(xml => {
+			                // Parse the XML content
+			                const parser = new DOMParser();
+			                const xmlDoc = parser.parseFromString(xml, "application/xml");
+
+			                // Extract items from the XML
+			                const items = xmlDoc.querySelectorAll('item');
+
+			                // Create HTML content from the RSS feed items
+			                let html = '<ul class="blog">';
+			                items.forEach(item => {
+			                    const title = item.querySelector('title').textContent;
+			                    const sanitisedTitle = item.querySelector('title').textContent.replace(/[^a-zA-Z0-9]/g, "");
+			                    // const contentEncoded = item.querySelector('encoded').textContent;
+			                    html += `<li><a href="full-blog.html?title=${sanitisedTitle}" target="_blank">${title}</a></li>`;
+			                    localStorage.setItem(`${sanitisedTitle}`, item.outerHTML);
+			                    // html += contentEncoded;
+			                });
+			                html += '</ul>';
+
+			                // Display the HTML content in the specified div
+			                document.getElementById('rss-feed').innerHTML = html;
+			            })
+			            .catch(error => {
+			                console.error('Error fetching RSS feed:', error);
+			            });
+			    }
+
+			    // Call the function with the RSS feed URL
+			    fetchAndDisplayRssFeed(rssFeedUrl);
 			});
 		</script>
 	</body>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Ramya</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap" rel="stylesheet">	
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<div class="bar">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>	
+	<div class="content">
+		<a style="text-decoration: none;color: inherit;" href="index.html"><h1 class="heading-green">Ramya</h1></a>
+		<div id="rss-post"></div>	
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+		    const parser = new DOMParser();
+		    const searchParams = new URLSearchParams(window.location.search);
+		    var rssDomText = localStorage.getItem(searchParams.get('title'));
+		    console.log(rssDomText);
+		    const xmlDoc = parser.parseFromString(rssDomText, "application/xml");
+		    document.getElementById('rss-post').innerHTML = "<h2 class=\"heading-brwn\">" + xmlDoc.querySelector('title').textContent + "</h2>";
+		    document.getElementById('rss-post').innerHTML = "<div>" + xmlDoc.querySelector('encoded').textContent + "</div>";
+		});
+</script>
+</body>
+</html>
