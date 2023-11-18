@@ -9,6 +9,9 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap" rel="stylesheet">	
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="blog.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 </head>
 <body>
 	<div class="bar">
@@ -25,14 +28,15 @@
 	</div>
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
-		    const parser = new DOMParser();
-		    const searchParams = new URLSearchParams(window.location.search);
-		    var rssDomText = localStorage.getItem(searchParams.get('title'));
-		    console.log(rssDomText);
-		    const xmlDoc = parser.parseFromString(rssDomText, "application/xml");
-		    document.getElementById('rss-post').innerHTML = "<h2 class=\"heading-brwn\">" + xmlDoc.querySelector('title').textContent + "</h2>";
-		    document.getElementById('rss-post').innerHTML = "<div>" + xmlDoc.querySelector('encoded').textContent + "</div>";
+			const parser = new DOMParser();
+			const searchParams = new URLSearchParams(window.location.search);
+			var rssDomText = localStorage.getItem(searchParams.get('title'));
+			console.log(rssDomText);
+			const xmlDoc = parser.parseFromString(rssDomText, "application/xml");
+			document.getElementById('rss-post').innerHTML = "<h2 class=\"heading-lbrwn\">" + xmlDoc.querySelector('title').textContent + "</h2>";
+			document.getElementById('rss-post').innerHTML += "<div>" + xmlDoc.querySelector('encoded').textContent + "</div>";
 		});
-</script>
+		hljs.highlightAll();
+	</script>
 </body>
 </html>
