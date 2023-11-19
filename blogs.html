@@ -24,12 +24,58 @@
 		<h2 class="heading-brwn">Blogs I've read &#128214; and loved 🫶</h2>
 		<h4 class="heading-lbrwn">Why this curation? you may ask:</h4>
 		Advanced and convoluted articles sometimes created the feeling that i don't know enough. Over time i've learnt how to find articles relevant to me. This space is an attempt to curate some of the best, beginner friendly articles i read so that it could be the starting point for someone new. Read at your own discretion. 😉
-
+		
 		<h3 class="heading-green">What i read in ...</h3>
-		<h4 class="heading-brwn">Nov 2023</h3>
-			<ul>
-				<a href="https://arne.me/articles/archive-your-old-projects"><li>Archive your old projects - Arne</a><span class="label_info">Tech</span></li>
-			</ul>
+		<div id="articles">
+			Loading... <br>(Bare with the delay until i find a better alternative)
 		</div>
+	</div>
+	<script>
+		async function fetchData() {
+			    // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
+			    const apiUrl = 'https://script.google.com/macros/s/AKfycbygFg835Cb6f387-44ozeg6Rq2NZ6f94a8Xyc3cGuS2Ln8NOzChnS5XtUZG84OAz2nmoQ/exec';
+
+			    try {
+			        // Make a GET request using the fetch function
+			        const response = await fetch(apiUrl);
+
+			        // Check if the response status is OK (200)
+			        if (!response.ok) {
+			        	throw new Error(`HTTP error! Status: ${response.status}`);
+			        }
+
+			        // Parse the response as JSON
+			        const data = await response.json();
+			        var oldTimestamp = '';
+			        var html = '';
+			        // Print each link as a clickable tag
+			        data.forEach(item => {
+			        	const link = item.link;
+			        	const name = item.name;
+			        	const type = item.type;
+			        	const timestamp = item.timestamp;
+			        	if (oldTimestamp != timestamp) {
+			        		html += `<h4 class="heading-brwn">${timestamp}</h4>`;
+			        		oldTimestamp = timestamp;
+			        	}
+			        	html += `<ul><a href=${link}><li>${name}</a>`
+			        	if (item.type != 'Misc') {
+			        		html += `<span class="label_info">${type}</span>`
+			        	}
+			        	html += `</li></ul>`
+			        	document.getElementById('articles').innerHTML = html;
+			        });
+
+			        // Print the JSON data to the console
+			        console.log('JSON response:', data);
+			    } catch (error) {
+			        // Handle any errors that occurred during the fetch
+			        console.error('Fetch error:', error);
+			    }
+			}
+
+			// Call the function to initiate the asynchronous fetch
+			fetchData();
+		</script>
 	</body>
 	</html>

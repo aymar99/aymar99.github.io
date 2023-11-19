@@ -35,8 +35,8 @@
 			const xmlDoc = parser.parseFromString(rssDomText, "application/xml");
 			document.getElementById('rss-post').innerHTML = "<h2 class=\"heading-lbrwn\">" + xmlDoc.querySelector('title').textContent + "</h2>";
 			document.getElementById('rss-post').innerHTML += "<div>" + xmlDoc.querySelector('encoded').textContent + "</div>";
+			hljs.highlightAll();
 		});
-		hljs.highlightAll();
 	</script>
 </body>
 </html>
