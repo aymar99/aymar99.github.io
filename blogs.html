@@ -9,6 +9,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap" rel="stylesheet">	
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<style type="text/css">
+	  li{
+	  	padding-bottom: 0.5rem;
+	  }
+	</style>
 </head>
 <body>
 	<div class="bar">
@@ -33,7 +38,7 @@
 	<script>
 		async function fetchData() {
 			    // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
-			    const apiUrl = 'https://script.google.com/macros/s/AKfycbygFg835Cb6f387-44ozeg6Rq2NZ6f94a8Xyc3cGuS2Ln8NOzChnS5XtUZG84OAz2nmoQ/exec';
+			    const apiUrl = 'https://script.google.com/macros/s/AKfycbw_w66UZ17XzukBSrx_QUbFdcGPZgl-DrN4IwY1TXJVadc23HzDNYB28LJ9Vj0iyx_Q_g/exec';
 
 			    try {
 			        // Make a GET request using the fetch function
@@ -46,26 +51,41 @@
 
 			        // Parse the response as JSON
 			        const data = await response.json();
-			        var oldTimestamp = '';
+			        var oldMonYear = '';
 			        var html = '';
 			        // Print each link as a clickable tag
 			        data.forEach(item => {
 			        	const link = item.link;
 			        	const name = item.name;
 			        	const type = item.type;
-			        	const timestamp = item.timestamp;
-			        	if (oldTimestamp != timestamp) {
-			        		html += `<h4 class="heading-brwn">${timestamp}</h4>`;
-			        		oldTimestamp = timestamp;
+			        	const author = item.author;
+			        	const monYear = item.monYear;
+			        	const day = item.day;
+			        	if (oldMonYear != monYear) {
+			        		html += `<h4 class="heading-brwn">${monYear}</h4>`;
+			        		oldMonYear = monYear;
 			        	}
-			        	html += `<ul><a href=${link}><li>${name}</a>`
+			        	html += `<ul><li>Day ${day} <a href=${link}>${name} - ${author}</a>`
 			        	if (item.type != 'Misc') {
 			        		html += `<span class="label_info">${type}</span>`
 			        	}
 			        	html += `</li></ul>`
 			        	document.getElementById('articles').innerHTML = html;
 			        });
-
+			        const collection = document.getElementsByClassName('label_info');
+			        for(var i=0;i<collection.length;i++){
+			        	const label=collection[i].innerHTML;
+			        	if(label=='Tech'){
+			        		collection[i].classList.add("bg-green");
+			        	}else if(label == 'Finance'){
+			        		collection[i].classList.add("bg-lgrain");
+			        	}else if(label == 'Philosophy'){
+			        		collection[i].classList.add("bg-dtan");
+			        	}else{
+			        		collection[i].classList.add("bg-lbrwn");
+			        	}
+			    	}
+					
 			        // Print the JSON data to the console
 			        console.log('JSON response:', data);
 			    } catch (error) {
@@ -73,7 +93,6 @@
 			        console.error('Fetch error:', error);
 			    }
 			}
-
 			// Call the function to initiate the asynchronous fetch
 			fetchData();
 		</script>

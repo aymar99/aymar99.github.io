@@ -137,6 +137,24 @@ a{
   font-family: 'Nunito', sans-serif;
 } 
 
+.bg-green{
+  background-color: var(--light-backboard-color);
+} 
+
+.bg-lbrwn{
+  background-color: var(--dark-oxblood-color);
+} 
+
+.bg-lgrain{
+  background-color: var(--light-grain-color);
+  color: black;
+}
+
+.bg-dtan{
+  background-color: var(--dark-tan-color);
+}
+
+
 .segment:nth-child(1) {
   background-color: var(--dark-backboard-color); /* Dark Blackboard */
 }
