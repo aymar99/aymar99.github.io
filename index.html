@@ -60,7 +60,7 @@
 					</li>
 				</ul>
 			</div>
-			<h3 class="heading-green">My blogs</h3>
+			<h3 class="heading-green" id="my-blogs">My blogs</h3>
 			<div id="rss-feed"></div>
 			<h3 class="heading-brwn">Curation of the things that align with my taste</h3>
 			<div class="skills">
@@ -111,6 +111,9 @@
 
 			            // Create HTML content from the RSS feed items
 			            let html = '<ul class="blog">';
+			            let prevTitle='';
+			            let nextTitle='';
+			            // TODO populate this and show for linking
 			            items.forEach(item => {
 			                const title = item.querySelector('title').textContent;
 			                const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
