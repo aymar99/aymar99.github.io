@@ -140,7 +140,7 @@
           var oldMonYear = "";
           var html = "";
           // Print each link as a clickable tag
-          data.reverse().forEach((item) => {
+          data.reverse().forEach((item, index) => {
             const link = item.link;
             const name = item.name;
             const type = item.type;
@@ -148,14 +148,19 @@
             const monYear = item.monYear;
             const day = item.day;
             if (oldMonYear != monYear) {
-              html += `<h4 class="heading-brwn">${monYear}</h4>`;
+              if (html != "") {
+                html += `</ul><h4 id="heading-month-${index}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
+              } else {
+                html += `<input type="search" id="inputSearchParam" onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
+                html += `<h4 id="heading-month-${index}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
+              }
               oldMonYear = monYear;
             }
-            html += `<ul><li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+            html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
             if (item.type != "Misc") {
               html += `<span class="label_info">${type}</span>`;
             }
-            html += `</li></ul>`;
+            html += `</li>`;
             document.getElementById("articles").innerHTML = html;
           });
           const collection = document.getElementsByClassName("label_info");
@@ -171,9 +176,6 @@
               collection[i].classList.add("bg-lbrwn");
             }
           }
-
-          // Print the JSON data to the console
-          console.log("JSON response:", data);
         } catch (error) {
           // Handle any errors that occurred during the fetch
           console.error("Fetch error:", error);
@@ -181,6 +183,33 @@
       }
       // Call the function to initiate the asynchronous fetch
       fetchData();
+      function searchKeyWords() {
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("inputSearchParam");
+        filter = input.value.toUpperCase().trim();
+        ulCollection = document.getElementsByClassName("articles-list");
+        for (var i = 0; i < ulCollection.length; i++) {
+          li = ulCollection[i].getElementsByTagName("li");
+          var count = 0;
+          // Loop through all list items, and hide those who don't match the search query
+          for (var j = 0; j < li.length; j++) {
+            txtValue = li[j].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              li[j].style.display = "";
+            } else {
+              li[j].style.display = "none";
+              count += 1;
+            }
+          }
+          if (count == li.length) {
+            document.getElementById("heading-month-" + i).style.display =
+              "none";
+          } else {
+            document.getElementById("heading-month-" + i).style.display = "";
+          }
+        }
+      }
     </script>
   </body>
 </html>
