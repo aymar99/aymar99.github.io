@@ -120,6 +120,7 @@ a {
   text-align: center;
   color: var(--light-backboard-color);
   font-family: "Nunito", sans-serif;
+  margin: 1rem;
 }
 
 .heading-brwn {
@@ -127,6 +128,7 @@ a {
   text-align: center;
   color: var(--oxblood-color);
   font-family: "Nunito", sans-serif;
+  margin: 1rem;
 }
 
 .heading-lbrwn {
@@ -134,6 +136,7 @@ a {
   text-align: center;
   color: var(--dark-tan-color);
   font-family: "Nunito", sans-serif;
+  margin: 1rem;
 }
 
 .bg-green {
@@ -177,20 +180,12 @@ a {
   background-color: var(--light-grain-color); /* Light Grain */
 }
 
-/*copied*/
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
-
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-h1 {
-  text-align: center;
 }
 
 .career-journey {
