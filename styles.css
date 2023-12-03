@@ -504,7 +504,7 @@ img {
   box-sizing: inherit;
 }
 
-#myInput {
+#inputSearchParam {
   width: 100%;
   box-sizing: border-box;
   border: 2px solid #ccc;
