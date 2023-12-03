@@ -1,174 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<title>Ramya</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap" rel="stylesheet">	
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<style type="text/css">
-		li{
-			padding-bottom: 0.5rem;
-		}
-		.loader {
-			transform: rotateZ(45deg);
-			perspective: 1000px;
-			border-radius: 50%;
-			width: 48px;
-			height: 48px;
-			color: var(--oxblood-color);
-			margin: auto;
-		}
-		.loader:before,
-		.loader:after {
-			content: '';
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: inherit;
-			height: inherit;
-			border-radius: 50%;
-			transform: rotateX(70deg);
-			animation: 1s spin linear infinite;
-		}
-		.loader:after {
-			color: var(--light-grain-color);
-			transform: rotateY(70deg);
-			animation-delay: .4s;
-		}
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Ramya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style type="text/css">
+      li {
+        padding-bottom: 0.5rem;
+      }
+      .loader {
+        transform: rotateZ(45deg);
+        perspective: 1000px;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: var(--oxblood-color);
+        margin: auto;
+      }
+      .loader:before,
+      .loader:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+        transform: rotateX(70deg);
+        animation: 1s spin linear infinite;
+      }
+      .loader:after {
+        color: var(--light-grain-color);
+        transform: rotateY(70deg);
+        animation-delay: 0.4s;
+      }
 
-		@keyframes rotate {
-			0% {
-				transform: translate(-50%, -50%) rotateZ(0deg);
-			}
-			100% {
-				transform: translate(-50%, -50%) rotateZ(360deg);
-			}
-		}
+      @keyframes rotate {
+        0% {
+          transform: translate(-50%, -50%) rotateZ(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotateZ(360deg);
+        }
+      }
 
-		@keyframes rotateccw {
-			0% {
-				transform: translate(-50%, -50%) rotate(0deg);
-			}
-			100% {
-				transform: translate(-50%, -50%) rotate(-360deg);
-			}
-		}
+      @keyframes rotateccw {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(-360deg);
+        }
+      }
 
-		@keyframes spin {
-			0%,
-			100% {
-				box-shadow: .2em 0px 0 0px currentcolor;
-			}
-			12% {
-				box-shadow: .2em .2em 0 0 currentcolor;
-			}
-			25% {
-				box-shadow: 0 .2em 0 0px currentcolor;
-			}
-			37% {
-				box-shadow: -.2em .2em 0 0 currentcolor;
-			}
-			50% {
-				box-shadow: -.2em 0 0 0 currentcolor;
-			}
-			62% {
-				box-shadow: -.2em -.2em 0 0 currentcolor;
-			}
-			75% {
-				box-shadow: 0px -.2em 0 0 currentcolor;
-			}
-			87% {
-				box-shadow: .2em -.2em 0 0 currentcolor;
-			}
-		}
-	</style>
-</head>
-<body>
-	<div class="bar">
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-	</div>	
-	<div class="content">
-		<a style="text-decoration: none;color: inherit;" href="index.html"><h1 class="heading-green">Ramya</h1></a>
-		<h2 class="heading-brwn">Blogs I've read &#128214; and loved 🫶</h2>
-		<h4 class="heading-lbrwn">Why this curation? you may ask:</h4>
-		Advanced and convoluted articles sometimes created the feeling that i don't know enough. Over time i've learnt how to find articles relevant to me. This space is an attempt to curate some of the best, beginner friendly articles i read so that it could be the starting point for someone new. Read at your own discretion. 😉
-		
-		<h3 class="heading-green">What i read in ...</h3>
-		<div id="articles">
-			<div class="loader"></div>
-			<p>(Bare with the delay until i find a better alternative)</p>
-		</div>
-	</div>
-	<script>
-		async function fetchData() {
-			    // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
-			    const apiUrl = 'https://script.google.com/macros/s/AKfycbw_w66UZ17XzukBSrx_QUbFdcGPZgl-DrN4IwY1TXJVadc23HzDNYB28LJ9Vj0iyx_Q_g/exec';
+      @keyframes spin {
+        0%,
+        100% {
+          box-shadow: 0.2em 0px 0 0px currentcolor;
+        }
+        12% {
+          box-shadow: 0.2em 0.2em 0 0 currentcolor;
+        }
+        25% {
+          box-shadow: 0 0.2em 0 0px currentcolor;
+        }
+        37% {
+          box-shadow: -0.2em 0.2em 0 0 currentcolor;
+        }
+        50% {
+          box-shadow: -0.2em 0 0 0 currentcolor;
+        }
+        62% {
+          box-shadow: -0.2em -0.2em 0 0 currentcolor;
+        }
+        75% {
+          box-shadow: 0px -0.2em 0 0 currentcolor;
+        }
+        87% {
+          box-shadow: 0.2em -0.2em 0 0 currentcolor;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+    </div>
+    <div class="content">
+      <a style="text-decoration: none; color: inherit" href="index.html"
+        ><h1 class="heading-green">Ramya</h1></a
+      >
+      <h2 class="heading-brwn">Blogs I've read &#128214; and loved 🫶</h2>
+      <h4 class="heading-lbrwn">Why this curation? you may ask:</h4>
+      Advanced and convoluted articles sometimes created the feeling that i
+      don't know enough. Over time i've learnt how to find articles relevant to
+      me. This space is an attempt to curate some of the best, beginner friendly
+      articles i read so that it could be the starting point for someone new.
+      Read at your own discretion. 😉
 
-			    try {
-			        // Make a GET request using the fetch function
-			        const response = await fetch(apiUrl);
+      <h3 class="heading-green">What i read in ...</h3>
+      <div id="articles">
+        <div class="loader"></div>
+        <p>(Bare with the delay until i find a better alternative)</p>
+      </div>
+    </div>
+    <script>
+      async function fetchData() {
+        // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
+        const apiUrl =
+          "https://script.google.com/macros/s/AKfycbw_w66UZ17XzukBSrx_QUbFdcGPZgl-DrN4IwY1TXJVadc23HzDNYB28LJ9Vj0iyx_Q_g/exec";
 
-			        // Check if the response status is OK (200)
-			        if (!response.ok) {
-			        	throw new Error(`HTTP error! Status: ${response.status}`);
-			        }
+        try {
+          // Make a GET request using the fetch function
+          const response = await fetch(apiUrl);
 
-			        // Parse the response as JSON
-			        const data = await response.json();
-			        var oldMonYear = '';
-			        var html = '';
-			        // Print each link as a clickable tag
-			        data.forEach(item => {
-			        	const link = item.link;
-			        	const name = item.name;
-			        	const type = item.type;
-			        	const author = item.author;
-			        	const monYear = item.monYear;
-			        	const day = item.day;
-			        	if (oldMonYear != monYear) {
-			        		html += `<h4 class="heading-brwn">${monYear}</h4>`;
-			        		oldMonYear = monYear;
-			        	}
-			        	html += `<ul><li>Day ${day} <a href=${link}>${name} - ${author}</a>`
-			        	if (item.type != 'Misc') {
-			        		html += `<span class="label_info">${type}</span>`
-			        	}
-			        	html += `</li></ul>`
-			        	document.getElementById('articles').innerHTML = html;
-			        });
-			        const collection = document.getElementsByClassName('label_info');
-			        for(var i=0;i<collection.length;i++){
-			        	const label=collection[i].innerHTML;
-			        	if(label=='Tech'){
-			        		collection[i].classList.add("bg-green");
-			        	}else if(label == 'Finance'){
-			        		collection[i].classList.add("bg-lgrain");
-			        	}else if(label == 'Philosophy'){
-			        		collection[i].classList.add("bg-dtan");
-			        	}else{
-			        		collection[i].classList.add("bg-lbrwn");
-			        	}
-			        }
+          // Check if the response status is OK (200)
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
-			        // Print the JSON data to the console
-			        console.log('JSON response:', data);
-			    } catch (error) {
-			        // Handle any errors that occurred during the fetch
-			        console.error('Fetch error:', error);
-			    }
-			}
-			// Call the function to initiate the asynchronous fetch
-			fetchData();
-		</script>
-	</body>
-	</html>
+          // Parse the response as JSON
+          const data = await response.json();
+          var oldMonYear = "";
+          var html = "";
+          // Print each link as a clickable tag
+          data.reverse().forEach((item) => {
+            const link = item.link;
+            const name = item.name;
+            const type = item.type;
+            const author = item.author;
+            const monYear = item.monYear;
+            const day = item.day;
+            if (oldMonYear != monYear) {
+              html += `<h4 class="heading-brwn">${monYear}</h4>`;
+              oldMonYear = monYear;
+            }
+            html += `<ul><li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+            if (item.type != "Misc") {
+              html += `<span class="label_info">${type}</span>`;
+            }
+            html += `</li></ul>`;
+            document.getElementById("articles").innerHTML = html;
+          });
+          const collection = document.getElementsByClassName("label_info");
+          for (var i = 0; i < collection.length; i++) {
+            const label = collection[i].innerHTML;
+            if (label == "Tech") {
+              collection[i].classList.add("bg-green");
+            } else if (label == "Finance") {
+              collection[i].classList.add("bg-lgrain");
+            } else if (label == "Philosophy") {
+              collection[i].classList.add("bg-dtan");
+            } else {
+              collection[i].classList.add("bg-lbrwn");
+            }
+          }
+
+          // Print the JSON data to the console
+          console.log("JSON response:", data);
+        } catch (error) {
+          // Handle any errors that occurred during the fetch
+          console.error("Fetch error:", error);
+        }
+      }
+      // Call the function to initiate the asynchronous fetch
+      fetchData();
+    </script>
+  </body>
+</html>
