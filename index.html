@@ -1,137 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<title>Ramya</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap" rel="stylesheet">	
-	<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-	<div class="bar">
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-		<div class="segment"></div>
-	</div>	
-	<div class="content">
-		<a style="text-decoration: none;color: inherit;" href="#"><h1 class="heading-green">Ramya</h1></a>
-		<h2 class="heading-brwn">Hey there!</h2>
-		<p>Ramya here! 24, Female, Chennai, India. </p>
-		<h3 class="heading-green">Some words that best describe me,</h3>
-		<!-- //reversse -->
-		<ul class="aboutme">
-			<li>Programmer</li>
-			<!-- (Object oriented paradigm mainly) -->
-			<li>Minimalist</li>
-			<!-- (If mindful spending counts!) -->
-			<li>Atheist </li>
-			<li>Amateur writer</li>
-			<!-- (Here's my blog ...) -->
-			<li>Tech and Finance enthusiast</li>
-			<!-- (Learning and growing every day) -->
-		</ul>	
-		<h3 class="heading-brwn cjourney">Career journey<button type="button" id="collapsible"><span id="toggle-symbol">&#9654;</span></button></h3>
-		<div id="collapsible-content">
-			<ul class="career-journey">
-				<li class="career">
-					<div class="date">Present</div>
-					<div class="title">Software engineer 2 <a href="https://www.paypal.com/in/home">Paypal</a></div>
-					<div class="descr">Just started, will update!</div></li>
-					<li class="career">
-						<div class="date">July 2022</div>
-						<div class="title">Senior software engineer <a href="https://www.applieddatafinance.com/">ADF datascience</a></div>
-						<div class="descr">My first full time job, where i truly became a professional, best ever career start!</div>
-					</li>
-					<li class="career">
-						<div class="date">Sep 2020</div>
-						<div class="title">Engineering graduate <a href="https://www.ssn.edu.in/">SSNCE</a></div>
-						<div class="descr">Such a beautiful place SSN was. Where it all started. :')</div>
-					</li>
-					<li class="career">
-						<div class="date">Dec 2019</div>
-						<div class="title">Software engineer intern - <a href="https://careers.caterpillar.com/en/">Caterpillar</a></div>
-						<div class="descr">A bird's eye view on how my SDE career will be.</div>
-					</li>
-				</ul>
-			</div>
-			<h3 class="heading-green" id="my-blogs">My blogs</h3>
-			<div id="rss-feed"></div>
-			<h3 class="heading-brwn">Curation of the things that align with my taste</h3>
-			<div class="skills">
-				<a style="text-decoration: none;" href="books.html">Books</a>
-				<a style="text-decoration: none;" href="curation-of-blogs.html">Blogs</a>
-			</div>
-			<h4 class="heading-green">Wanna know me more? the below links may help</h4>  
-			<ul class="contact-links">
-				<li><a style="color: inherit;" href="https://twitter.com/aymar_99">Twitter</a></li>
-				<li><a style="color: inherit;" href="https://www.linkedin.com/in/aymar99/">LinkedIn</a></li>
-				<li><a style="color: inherit;" href="https://github.com/aymar99">Github</a></li>
-			</ul> 
-			<p>
-			To check out how the site has evolved <a href="changelog.html">Click here</a>
-			</p>
-		</div>
-		<script>
-			//check and load TODO
-			var collapsibleElement = document.getElementById("collapsible");
-			var toggleElement = document.getElementById("toggle-symbol")
-			var i;
-			collapsibleElement.addEventListener("click", function() {
-			    this.classList.toggle("active");
-			    var content = document.getElementById("collapsible-content");
-			    if (content.style.display === "block") {
-			        content.style.display = "none";
-			        toggleElement.innerHTML = "&#9654;";
-			    } else {
-			        content.style.display = "block";
-			        toggleElement.innerHTML = "&#9660;";
-			    }
-			});
-			document.addEventListener("DOMContentLoaded", function() {
-			    const rssFeedUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://aymar.substack.com/feed');
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Ramya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="bar">
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+    </div>
+    <div class="content">
+      <a style="text-decoration: none; color: inherit" href="#"
+        ><h1 class="heading-green">Ramya</h1></a
+      >
+      <h2 class="heading-brwn">Hey there!</h2>
+      <p>Ramya here! 24, Female, Chennai, India.</p>
+      <h3 class="heading-green">Some words that best describe me,</h3>
+      <!-- //reversse -->
+      <ul class="aboutme">
+        <li>Programmer</li>
+        <!-- (Object oriented paradigm mainly) -->
+        <li>Minimalist</li>
+        <!-- (If mindful spending counts!) -->
+        <li>Atheist</li>
+        <li>Amateur writer</li>
+        <!-- (Here's my blog ...) -->
+        <li>Tech and Finance enthusiast</li>
+        <!-- (Learning and growing every day) -->
+      </ul>
+      <h3 class="heading-brwn cjourney">
+        Career journey<button type="button" id="collapsible">
+          <span id="toggle-symbol">&#9654;</span>
+        </button>
+      </h3>
+      <div id="collapsible-content">
+        <ul class="career-journey">
+          <li class="career">
+            <div class="date">Present</div>
+            <div class="title">
+              Software engineer 2
+              <a href="https://www.paypal.com/in/home">Paypal</a>
+            </div>
+            <div class="descr">Just started, will update!</div>
+          </li>
+          <li class="career">
+            <div class="date">July 2022</div>
+            <div class="title">
+              Senior software engineer
+              <a href="https://www.applieddatafinance.com/">ADF datascience</a>
+            </div>
+            <div class="descr">
+              My first full time job, where i truly became a professional, best
+              ever career start!
+            </div>
+          </li>
+          <li class="career">
+            <div class="date">Sep 2020</div>
+            <div class="title">
+              Engineering graduate <a href="https://www.ssn.edu.in/">SSNCE</a>
+            </div>
+            <div class="descr">
+              Such a beautiful place SSN was. Where it all started. :')
+            </div>
+          </li>
+          <li class="career">
+            <div class="date">Dec 2019</div>
+            <div class="title">
+              Software engineer intern -
+              <a href="https://careers.caterpillar.com/en/">Caterpillar</a>
+            </div>
+            <div class="descr">
+              A bird's eye view on how my SDE career will be.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <h3 class="heading-green" id="my-blogs">My blogs</h3>
+      <div id="rss-feed"></div>
+      <h3 class="heading-brwn">
+        Curation of the things that align with my taste
+      </h3>
+      <div class="skills">
+        <a style="text-decoration: none" href="books.html">Books</a>
+        <a style="text-decoration: none" href="curation-of-blogs.html">Blogs</a>
+      </div>
+      <h4 class="heading-green">
+        Wanna know me more? the below links may help
+      </h4>
+      <ul class="contact-links">
+        <li>
+          <a style="color: inherit" href="https://twitter.com/aymar_99"
+            >Twitter</a
+          >
+        </li>
+        <li>
+          <a style="color: inherit" href="https://www.linkedin.com/in/aymar99/"
+            >LinkedIn</a
+          >
+        </li>
+        <li>
+          <a style="color: inherit" href="https://github.com/aymar99">Github</a>
+        </li>
+      </ul>
+      <p>
+        To check out how the site has evolved
+        <a href="changelog.html">Click here</a>
+      </p>
+    </div>
+    <script>
+      //check and load TODO
+      var collapsibleElement = document.getElementById("collapsible");
+      var toggleElement = document.getElementById("toggle-symbol");
+      var i;
+      collapsibleElement.addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = document.getElementById("collapsible-content");
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          toggleElement.innerHTML = "&#9654;";
+        } else {
+          content.style.display = "block";
+          toggleElement.innerHTML = "&#9660;";
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const rssFeedUrl =
+          "https://corsproxy.io/?" +
+          encodeURIComponent("https://aymar.substack.com/feed");
 
-			    // Function to fetch and display the RSS feed
-			    async function fetchAndDisplayRssFeed(url) {
-			        try {
-			            const response = await fetch(url);
-			            const xml = await response.text();
+        // Function to fetch and display the RSS feed
+        async function fetchAndDisplayRssFeed(url) {
+          try {
+            const response = await fetch(url);
+            const xml = await response.text();
 
-			            // Parse the XML content
-			            const parser = new DOMParser();
-			            const xmlDoc = parser.parseFromString(xml, "application/xml");
+            // Parse the XML content
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xml, "application/xml");
 
-			            // Extract items from the XML
-			            const items = xmlDoc.querySelectorAll('item');
+            // Extract items from the XML
+            const items = xmlDoc.querySelectorAll("item");
 
-			            // Create HTML content from the RSS feed items
-			            let html = '<ul class="blog">';
-			            let prevTitle='';
-			            let nextTitle='';
-			            // TODO populate this and show for linking
-			            items.forEach(item => {
-			                const title = item.querySelector('title').textContent;
-			                const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
-			                html += `<li><a href="full-blog.html?title=${sanitisedTitle}" target="_blank">${title}</a></li>`;
-			                localStorage.setItem(`${sanitisedTitle}`, item.outerHTML);
-			            });
-			            html += '</ul>';
+            // Create HTML content from the RSS feed items
+            let html = '<ul class="blog">';
+            let prevTitle = "";
+            let nextTitle = "";
+            // TODO populate this and show for linking
+            items.forEach((item) => {
+              const title = item.querySelector("title").textContent;
+              const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
+              html += `<li><a href="full-blog.html?title=${sanitisedTitle}" target="_blank">${title}</a></li>`;
+              localStorage.setItem(`${sanitisedTitle}`, item.outerHTML);
+            });
+            html += "</ul>";
 
-			            // Display the HTML content in the specified div
-			            document.getElementById('rss-feed').innerHTML = html;
-			        } catch (error) {
-			            console.error('Error fetching RSS feed:', error);
-			        }
-			    }
+            // Display the HTML content in the specified div
+            document.getElementById("rss-feed").innerHTML = html;
+          } catch (error) {
+            console.error("Error fetching RSS feed:", error);
+          }
+        }
 
-			    // Call the asynchronous function with the RSS feed URL
-			    fetchAndDisplayRssFeed(rssFeedUrl);
-			});
-		</script>
-	</body>
-	</html>
+        // Call the asynchronous function with the RSS feed URL
+        fetchAndDisplayRssFeed(rssFeedUrl);
+      });
+    </script>
+  </body>
+</html>
