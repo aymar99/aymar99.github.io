@@ -163,7 +163,7 @@
             items.forEach((item) => {
               const title = item.querySelector("title").textContent;
               const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
-              html += `<li><a href="full-blog.html?title=${sanitisedTitle}" target="_blank">${title}</a></li>`;
+              html += `<li><a href="full-blog.html?title=${sanitisedTitle}">${title}</a></li>`;
               localStorage.setItem(`${sanitisedTitle}`, item.outerHTML);
             });
             html += "</ul>";

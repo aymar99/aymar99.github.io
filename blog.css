@@ -34,3 +34,18 @@ ul li p,
 ol li p {
   display: inline;
 }
+
+h3,
+h4,
+h5 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+h3 {
+  color: var(--light-backboard-color);
+}
+
+h4 {
+  color: var(--dark-tan-color);
+}
