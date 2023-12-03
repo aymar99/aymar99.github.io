@@ -5,7 +5,10 @@ body {
 
 figcaption {
   text-align: center;
-  margin-bottom: 1rem;
+}
+
+figure{
+	margin-bottom: 1rem;
 }
 
 blockquote {
@@ -16,6 +19,9 @@ blockquote p {
   padding: 15px;
   background: #eee;
   border-radius: 5px;
+  font-weight: bold;
+  font-style: italic;
+  color: #484848;
 }
 
 pre {
