@@ -51,7 +51,7 @@ a {
 }
 
 .aboutme li:nth-child(2)::before {
-  content: "\1F33F";
+  content: "\1F4B8";
 }
 
 .aboutme li:nth-child(3)::before {
