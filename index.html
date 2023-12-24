@@ -87,7 +87,9 @@
         </ul>
       </div>
       <h3 class="heading-green" id="my-blogs">My blogs</h3>
-      <div id="rss-feed"></div>
+      <div id="rss-feed">
+        <div class="loader"></div>
+      </div>
       <h3 class="heading-brwn">
         Curation of the things that align with my taste
       </h3>
@@ -137,7 +139,6 @@
       document.addEventListener("DOMContentLoaded", function () {
         const rssFeedUrl =
           "https://proxy.cors.sh/https://aymar.substack.com/feed";
-        console.log("called");
         async function fetchAndDisplay(url) {
           try {
             const response = await fetch(url, {
@@ -183,7 +184,6 @@
             // Convert the JSON object to a JSON-formatted string
             let jsonString = JSON.stringify(jsonObject);
 
-            console.log(jsonString);
             localStorage.setItem("aymarsitedata", jsonString);
 
             // Display the HTML content in the specified div
