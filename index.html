@@ -198,7 +198,7 @@
           let cacheData = localStorage.getItem("aymarsitedata");
           let jsonObject = JSON.parse(cacheData);
 
-          if (jsonObject.date_time) {
+          if (cacheData && jsonObject.date_time) {
             // Given date string
             let dateString = jsonObject.date_time;
 
