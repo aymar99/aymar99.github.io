@@ -95,7 +95,9 @@
       </h3>
       <div class="skills">
         <a style="text-decoration: none" href="books.html">Books</a>
-        <a style="text-decoration: none" href="curation-of-blogs.html">Blogs</a>
+        <a style="text-decoration: none" href="curation-of-blogs.html"
+          >Articles</a
+        >
       </div>
       <h4 class="heading-green">
         Wanna know me more? the below links may help
@@ -177,8 +179,10 @@
 
             // Create a JSON object with the key "datetime"
             let jsonObject = {
-              date_time: currentDate.toISOString(), // Using toISOString to get a standardized string representation
-              blog_list: blog_list,
+              my_blog_data: {
+                date_time: currentDate.toISOString(), // Using toISOString to get a standardized string representation
+                blog_list: blog_list,
+              },
             };
 
             // Convert the JSON object to a JSON-formatted string
@@ -198,9 +202,13 @@
           let cacheData = localStorage.getItem("aymarsitedata");
           let jsonObject = JSON.parse(cacheData);
 
-          if (cacheData && jsonObject.date_time) {
+          if (
+            jsonObject &&
+            jsonObject.my_blog_data &&
+            jsonObject.my_blog_data.date_time
+          ) {
             // Given date string
-            let dateString = jsonObject.date_time;
+            let dateString = jsonObject.my_blog_data.date_time;
 
             // Convert the date string to a Date object
             let givenDate = new Date(dateString);
@@ -214,11 +222,11 @@
             // Calculate the difference in days
             let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 
-            // Check if the difference is within 2 days
+            // Check if the difference is within 1 day
             if (daysDifference <= 1) {
-              if (jsonObject.blog_list) {
+              if (jsonObject.my_blog_data.blog_list) {
                 let html = '<ul class="blog">';
-                jsonObject.blog_list.forEach((item) => {
+                jsonObject.my_blog_data.blog_list.forEach((item) => {
                   html += `<li><a href="full-blog.html?title=${item.sanitised_title}">${item.actual_title}</a></li>`;
                 });
                 html += "</ul>";

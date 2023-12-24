@@ -42,7 +42,7 @@
       </div>
     </div>
     <script>
-      async function fetchData() {
+      async function fetchAndSetData(aymarJsonData) {
         // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
         const apiUrl =
           "https://script.google.com/macros/s/AKfycbw_w66UZ17XzukBSrx_QUbFdcGPZgl-DrN4IwY1TXJVadc23HzDNYB28LJ9Vj0iyx_Q_g/exec";
@@ -62,6 +62,7 @@
           var html = "";
           // Print each link as a clickable tag
           var headingCount = 0;
+          var curatedBlogs = [];
           data.reverse().forEach((item, index) => {
             const link = item.link;
             const name = item.name;
@@ -84,28 +85,102 @@
               html += `<span class="label_info">${type}</span>`;
             }
             html += `</li>`;
+            singleBlog = {
+              mon_year: monYear,
+              link: link,
+              type: type,
+              day: day,
+              author: author,
+              name: name,
+            };
+            curatedBlogs.push(singleBlog);
             document.getElementById("articles").innerHTML = html;
           });
-          const collection = document.getElementsByClassName("label_info");
-          for (var i = 0; i < collection.length; i++) {
-            const label = collection[i].innerHTML;
-            if (label == "Tech") {
-              collection[i].classList.add("bg-green");
-            } else if (label == "Finance") {
-              collection[i].classList.add("bg-lgrain");
-            } else if (label == "Philosophy") {
-              collection[i].classList.add("bg-dtan");
-            } else {
-              collection[i].classList.add("bg-lbrwn");
-            }
-          }
+
+          let currentDate = new Date();
+          curated_blog_data = {
+            date_time: currentDate.toISOString(),
+            blog_list: curatedBlogs,
+          };
+          aymarJsonData.curated_blog_data = curated_blog_data;
+          localStorage.setItem("aymarsitedata", JSON.stringify(aymarJsonData));
         } catch (error) {
           // Handle any errors that occurred during the fetch
           console.error("Fetch error:", error);
         }
       }
+      async function displayData() {
+        let aymarSiteData = localStorage.getItem("aymarsitedata");
+        let aymarJsonData = JSON.parse(aymarSiteData);
+        if (
+          aymarJsonData &&
+          aymarJsonData.curated_blog_data &&
+          aymarJsonData.curated_blog_data.date_time
+        ) {
+          let dateString = aymarJsonData.curated_blog_data.date_time;
+
+          // Convert the date string to a Date object
+          let givenDate = new Date(dateString);
+
+          // Get the current date
+          let currentDate = new Date();
+
+          // Calculate the difference in milliseconds between the two dates
+          let timeDifference = Math.abs(givenDate - currentDate);
+
+          // Calculate the difference in days
+          let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+          var html = "";
+          var oldMonYear = "";
+          var headingCount = 0;
+
+          // Check if the difference is within 1 day
+          if (daysDifference <= 1) {
+            aymarJsonData.curated_blog_data.blog_list.forEach((item) => {
+              const link = item.link;
+              const name = item.name;
+              const type = item.type;
+              const author = item.author;
+              const monYear = item.mon_year;
+              const day = item.day;
+              if (oldMonYear != monYear) {
+                if (html != "") {
+                  html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
+                } else {
+                  html += `<input type="search" id="inputSearchParam" onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
+                  html += `<h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
+                }
+                headingCount++;
+                oldMonYear = monYear;
+              }
+              html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+              if (item.type != "Misc") {
+                html += `<span class="label_info">${type}</span>`;
+              }
+            });
+            document.getElementById("articles").innerHTML = html;
+          } else {
+            fetchAndSetData(aymarJsonData);
+          }
+        } else {
+          fetchAndSetData(aymarJsonData);
+        }
+        const collection = document.getElementsByClassName("label_info");
+        for (var i = 0; i < collection.length; i++) {
+          const label = collection[i].innerHTML;
+          if (label == "Tech") {
+            collection[i].classList.add("bg-green");
+          } else if (label == "Finance") {
+            collection[i].classList.add("bg-lgrain");
+          } else if (label == "Philosophy") {
+            collection[i].classList.add("bg-dtan");
+          } else {
+            collection[i].classList.add("bg-lbrwn");
+          }
+        }
+      }
       // Call the function to initiate the asynchronous fetch
-      fetchData();
+      displayData();
       function searchKeyWords() {
         // Declare variables
         var input, filter, ul, li, a, i, txtValue;
