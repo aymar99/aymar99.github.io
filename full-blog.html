@@ -40,7 +40,6 @@
         const parser = new DOMParser();
         const searchParams = new URLSearchParams(window.location.search);
         var rssDomText = localStorage.getItem(searchParams.get("title"));
-        console.log(rssDomText);
         const xmlDoc = parser.parseFromString(rssDomText, "application/xml");
         document.getElementById("rss-post").innerHTML =
           '<h2 class="heading-lbrwn">' +

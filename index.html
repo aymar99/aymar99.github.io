@@ -137,9 +137,8 @@
       document.addEventListener("DOMContentLoaded", function () {
         const rssFeedUrl =
           "https://proxy.cors.sh/https://aymar.substack.com/feed";
-
-        // Function to fetch and display the RSS feed
-        async function fetchAndDisplayRssFeed(url) {
+        console.log("called");
+        async function fetchAndDisplay(url) {
           try {
             const response = await fetch(url, {
               headers: {
@@ -159,14 +158,33 @@
             let html = '<ul class="blog">';
             let prevTitle = "";
             let nextTitle = "";
+            let blog_list = [];
             // TODO populate this and show for linking
             items.forEach((item) => {
               const title = item.querySelector("title").textContent;
               const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
               html += `<li><a href="full-blog.html?title=${sanitisedTitle}">${title}</a></li>`;
+              blog_list.push({
+                sanitised_title: sanitisedTitle,
+                actual_title: title,
+              });
               localStorage.setItem(`${sanitisedTitle}`, item.outerHTML);
             });
             html += "</ul>";
+            // Get the current date and time
+            let currentDate = new Date();
+
+            // Create a JSON object with the key "datetime"
+            let jsonObject = {
+              date_time: currentDate.toISOString(), // Using toISOString to get a standardized string representation
+              blog_list: blog_list,
+            };
+
+            // Convert the JSON object to a JSON-formatted string
+            let jsonString = JSON.stringify(jsonObject);
+
+            console.log(jsonString);
+            localStorage.setItem("aymarsitedata", jsonString);
 
             // Display the HTML content in the specified div
             document.getElementById("rss-feed").innerHTML = html;
@@ -175,8 +193,46 @@
           }
         }
 
+        // Function to fetch and display the RSS feed
+        async function displayRssFeed(url) {
+          let cacheData = localStorage.getItem("aymarsitedata");
+          let jsonObject = JSON.parse(cacheData);
+
+          if (jsonObject.date_time) {
+            // Given date string
+            let dateString = jsonObject.date_time;
+
+            // Convert the date string to a Date object
+            let givenDate = new Date(dateString);
+
+            // Get the current date
+            let currentDate = new Date();
+
+            // Calculate the difference in milliseconds between the two dates
+            let timeDifference = Math.abs(givenDate - currentDate);
+
+            // Calculate the difference in days
+            let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+            // Check if the difference is within 2 days
+            if (daysDifference <= 1) {
+              if (jsonObject.blog_list) {
+                let html = '<ul class="blog">';
+                jsonObject.blog_list.forEach((item) => {
+                  html += `<li><a href="full-blog.html?title=${item.sanitised_title}">${item.actual_title}</a></li>`;
+                });
+                html += "</ul>";
+                document.getElementById("rss-feed").innerHTML = html;
+              }
+            } else {
+              fetchAndDisplay(rssFeedUrl);
+            }
+          } else {
+            fetchAndDisplay(rssFeedUrl);
+          }
+        }
         // Call the asynchronous function with the RSS feed URL
-        fetchAndDisplayRssFeed(rssFeedUrl);
+        displayRssFeed(rssFeedUrl);
       });
     </script>
   </body>
