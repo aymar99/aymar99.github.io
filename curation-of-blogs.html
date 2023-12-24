@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <script src="utils.js"></script>
   </head>
   <body>
     <div class="bar">
@@ -117,25 +118,16 @@
           aymarJsonData.curated_blog_data &&
           aymarJsonData.curated_blog_data.date_time
         ) {
-          let dateString = aymarJsonData.curated_blog_data.date_time;
-
-          // Convert the date string to a Date object
-          let givenDate = new Date(dateString);
-
-          // Get the current date
-          let currentDate = new Date();
-
-          // Calculate the difference in milliseconds between the two dates
-          let timeDifference = Math.abs(givenDate - currentDate);
-
-          // Calculate the difference in days
-          let daysDifference = timeDifference / (1000 * 60 * 60 * 24);
           var html = "";
           var oldMonYear = "";
           var headingCount = 0;
 
           // Check if the difference is within 1 day
-          if (daysDifference <= 1) {
+          if (
+            getDateDifferenceBetweenCurrentAndGivenDate(
+              aymarJsonData.curated_blog_data.date_time,
+            ) <= 1
+          ) {
             aymarJsonData.curated_blog_data.blog_list.forEach((item) => {
               const link = item.link;
               const name = item.name;
