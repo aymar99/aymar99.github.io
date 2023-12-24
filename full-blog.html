@@ -19,6 +19,7 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <script src="js/utils.js"></script>
   </head>
   <body>
     <div class="bar">
@@ -33,13 +34,70 @@
       <a style="text-decoration: none; color: inherit" href="index.html"
         ><h1 class="heading-green">Ramya</h1></a
       >
-      <div id="rss-post"></div>
+      <div id="rss-post">
+        <div class="loader"></div>
+        <p style="text-align: center">Checking if it's a valid blog link...</p>
+      </div>
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      async function fetchAndDisplay(title) {
+        let aymarSiteData = localStorage.getItem("aymarsitedata");
+        let aymarJsonData = JSON.parse(aymarSiteData);
+        const url = "https://proxy.cors.sh/https://aymar.substack.com/feed";
+        try {
+          const response = await fetch(url, {
+            headers: {
+              "x-cors-api-key": "temp_8df4a0a411b4ca37be86186fe3cea4c7",
+            },
+          });
+          const xml = await response.text();
+
+          // Parse the XML content
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xml, "application/xml");
+
+          // Extract items from the XML
+          const items = xmlDoc.querySelectorAll("item");
+
+          let prevTitle = "";
+          let nextTitle = "";
+          let blog_list = [];
+          // TODO populate this and show for linking
+          items.forEach((item) => {
+            const title = item.querySelector("title").textContent;
+            const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
+            blog_list.push({
+              sanitised_title: sanitisedTitle,
+              actual_title: title,
+            });
+            localStorage.setItem(`${sanitisedTitle}`, item.outerHTML);
+          });
+          // Get the current date and time
+          let currentDate = new Date();
+
+          // Create a JSON object with the key "datetime"
+
+          my_blog_data = {
+            date_time: currentDate.toISOString(), // Using toISOString to get a standardized string representation
+            blog_list: blog_list,
+          };
+          if (!aymarJsonData) {
+            aymarJsonData = {};
+          }
+          aymarJsonData.my_blog_data = my_blog_data;
+
+          // Convert the JSON object to a JSON-formatted string
+          let jsonString = JSON.stringify(aymarJsonData);
+
+          localStorage.setItem("aymarsitedata", jsonString);
+        } catch (error) {
+          console.error("Error fetching RSS feed:", error);
+        }
+        var rssDomText = localStorage.getItem(title);
+        if (rssDomText) populateDataOnScreen(rssDomText);
+      }
+      function populateDataOnScreen(rssDomText) {
         const parser = new DOMParser();
-        const searchParams = new URLSearchParams(window.location.search);
-        var rssDomText = localStorage.getItem(searchParams.get("title"));
         const xmlDoc = parser.parseFromString(rssDomText, "application/xml");
         document.getElementById("rss-post").innerHTML =
           '<h2 class="heading-lbrwn">' +
@@ -48,6 +106,41 @@
         document.getElementById("rss-post").innerHTML +=
           "<div>" + xmlDoc.querySelector("encoded").textContent + "</div>";
         hljs.highlightAll();
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        const parser = new DOMParser();
+        const searchParams = new URLSearchParams(window.location.search);
+        var rssDomText = localStorage.getItem(searchParams.get("title"));
+        if (rssDomText) {
+          populateDataOnScreen(rssDomText);
+        } else {
+          var aymarJsonData = JSON.parse(localStorage.getItem("aymarsitedata"));
+          console.log(aymarJsonData.my_blog_data);
+          if (
+            aymarJsonData &&
+            aymarJsonData.my_blog_data &&
+            aymarJsonData.my_blog_data.date_time
+          ) {
+            if (
+              getDateDifferenceBetweenCurrentAndGivenDate(
+                aymarJsonData.my_blog_data.date_time,
+              ) <= 1
+            ) {
+              var html = `<div style="text-align:center"><h3 class="heading-lbrwn">Oops, invalid blog link!</h3><p>Checkout the below blogs of mine if interested</p><br>`;
+              aymarJsonData.my_blog_data.blog_list.forEach((blog) => {
+                console.log(blog);
+                html += `<a href=full-blog.html?title=${blog.sanitised_title}>${blog.actual_title}</a><br>`;
+              });
+              html += `</div>`;
+              document.getElementById("rss-post").innerHTML = html;
+            } else {
+              fetchAndDisplay(searchParams.get("title"));
+            }
+          } else {
+            console.log("djj");
+            fetchAndDisplay(searchParams.get("title"));
+          }
+        }
       });
     </script>
   </body>

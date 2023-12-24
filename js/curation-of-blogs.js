@@ -58,6 +58,9 @@ async function fetchAndSetData(aymarJsonData) {
       date_time: currentDate.toISOString(),
       blog_list: curatedBlogs,
     };
+    if (!aymarJsonData) {
+      aymarJsonData = {};
+    }
     aymarJsonData.curated_blog_data = curated_blog_data;
     localStorage.setItem("aymarsitedata", JSON.stringify(aymarJsonData));
   } catch (error) {

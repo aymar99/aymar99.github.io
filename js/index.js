@@ -16,6 +16,8 @@ collapsibleElement.addEventListener("click", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const rssFeedUrl = "https://proxy.cors.sh/https://aymar.substack.com/feed";
   async function fetchAndDisplay(url) {
+    let aymarSiteData = localStorage.getItem("aymarsitedata");
+    let aymarJsonData = JSON.parse(aymarSiteData);
     try {
       const response = await fetch(url, {
         headers: {
@@ -52,15 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
       let currentDate = new Date();
 
       // Create a JSON object with the key "datetime"
-      let jsonObject = {
-        my_blog_data: {
-          date_time: currentDate.toISOString(), // Using toISOString to get a standardized string representation
-          blog_list: blog_list,
-        },
+      my_blog_data = {
+        date_time: currentDate.toISOString(), // Using toISOString to get a standardized string representation
+        blog_list: blog_list,
       };
 
+      if (!aymarJsonData) {
+        aymarJsonData = {};
+      }
+
+      aymarJsonData.my_blog_data = my_blog_data;
+
       // Convert the JSON object to a JSON-formatted string
-      let jsonString = JSON.stringify(jsonObject);
+      let jsonString = JSON.stringify(aymarJsonData);
 
       localStorage.setItem("aymarsitedata", jsonString);
 
