@@ -97,7 +97,7 @@ async function displayData() {
           if (html != "") {
             html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
           } else {
-            html += `<input type="search" id="inputSearchParam" onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
+            html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
             html += `<h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
           }
           headingCount++;
@@ -154,6 +154,22 @@ function searchKeyWords() {
     if (count == li.length) {
       document.getElementById("heading-month-" + i).style.display = "none";
     } else {
+      document.getElementById("heading-month-" + i).style.display = "";
+    }
+  }
+}
+
+function handleClear(input) {
+  if (input.value == "") {
+    ulCollection = document.getElementsByClassName("articles-list");
+    for (var i = 0; i < ulCollection.length; i++) {
+      li = ulCollection[i].getElementsByTagName("li");
+      var count = 0;
+      // Loop through all list items, and hide those who don't match the search query
+      for (var j = 0; j < li.length; j++) {
+        li[j].style.display = "";
+      }
+      console.log(i + " " + count + " " + li.length);
       document.getElementById("heading-month-" + i).style.display = "";
     }
   }
