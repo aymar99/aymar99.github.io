@@ -126,10 +126,10 @@
                 aymarJsonData.my_blog_data.date_time,
               ) <= 1
             ) {
-              var html = `<div style="text-align:center"><h3 class="heading-lbrwn">Oops, invalid blog link!</h3><p>Checkout the below blogs of mine if interested</p><br>`;
+              var html = `<div style="text-align:center"><h3 class="heading-lbrwn">Oops, invalid blog link!</h3><p>Checkout the below blogs of mine if interested</p>`;
               aymarJsonData.my_blog_data.blog_list.forEach((blog) => {
                 console.log(blog);
-                html += `<a href=full-blog.html?title=${blog.sanitised_title}>${blog.actual_title}</a><br>`;
+                html += `<br><a href=fullblog.html?title=${blog.sanitised_title}>${blog.actual_title}</a>`;
               });
               html += `</div>`;
               document.getElementById("rss-post").innerHTML = html;

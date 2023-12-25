@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       items.forEach((item) => {
         const title = item.querySelector("title").textContent;
         const sanitisedTitle = title.replace(/[^a-zA-Z0-9]/g, "");
-        html += `<li><a href="full-blog.html?title=${sanitisedTitle}">${title}</a></li>`;
+        html += `<li><a href="fullblog.html?title=${sanitisedTitle}">${title}</a></li>`;
         blog_list.push({
           sanitised_title: sanitisedTitle,
           actual_title: title,
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (jsonObject.my_blog_data.blog_list) {
           let html = '<ul class="blog">';
           jsonObject.my_blog_data.blog_list.forEach((item) => {
-            html += `<li><a href="full-blog.html?title=${item.sanitised_title}">${item.actual_title}</a></li>`;
+            html += `<li><a href="fullblog.html?title=${item.sanitised_title}">${item.actual_title}</a></li>`;
           });
           html += "</ul>";
           document.getElementById("rss-feed").innerHTML = html;
