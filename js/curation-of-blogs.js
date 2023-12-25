@@ -50,8 +50,23 @@ async function fetchAndSetData(aymarJsonData) {
         name: name,
       };
       curatedBlogs.push(singleBlog);
-      document.getElementById("articles").innerHTML = html;
     });
+
+    document.getElementById("articles").innerHTML = html;
+
+    const collection = document.getElementsByClassName("label_info");
+    for (var i = 0; i < collection.length; i++) {
+      const label = collection[i].innerHTML;
+      if (label == "Tech") {
+        collection[i].classList.add("bg-green");
+      } else if (label == "Finance") {
+        collection[i].classList.add("bg-lgrain");
+      } else if (label == "Philosophy") {
+        collection[i].classList.add("bg-dtan");
+      } else {
+        collection[i].classList.add("bg-lbrwn");
+      }
+    }
 
     let currentDate = new Date();
     curated_blog_data = {
@@ -109,24 +124,24 @@ async function displayData() {
         }
       });
       document.getElementById("articles").innerHTML = html;
+      const collection = document.getElementsByClassName("label_info");
+      for (var i = 0; i < collection.length; i++) {
+        const label = collection[i].innerHTML;
+        if (label == "Tech") {
+          collection[i].classList.add("bg-green");
+        } else if (label == "Finance") {
+          collection[i].classList.add("bg-lgrain");
+        } else if (label == "Philosophy") {
+          collection[i].classList.add("bg-dtan");
+        } else {
+          collection[i].classList.add("bg-lbrwn");
+        }
+      }
     } else {
       fetchAndSetData(aymarJsonData);
     }
   } else {
     fetchAndSetData(aymarJsonData);
-  }
-  const collection = document.getElementsByClassName("label_info");
-  for (var i = 0; i < collection.length; i++) {
-    const label = collection[i].innerHTML;
-    if (label == "Tech") {
-      collection[i].classList.add("bg-green");
-    } else if (label == "Finance") {
-      collection[i].classList.add("bg-lgrain");
-    } else if (label == "Philosophy") {
-      collection[i].classList.add("bg-dtan");
-    } else {
-      collection[i].classList.add("bg-lbrwn");
-    }
   }
 }
 // Call the function to initiate the asynchronous fetch
