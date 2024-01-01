@@ -1,7 +1,7 @@
 async function fetchAndSetData(aymarJsonData) {
   // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
   const apiUrl =
-    "https://script.google.com/macros/s/AKfycbw_w66UZ17XzukBSrx_QUbFdcGPZgl-DrN4IwY1TXJVadc23HzDNYB28LJ9Vj0iyx_Q_g/exec";
+    "https://script.google.com/macros/s/AKfycbzZX1_xfwIfmQi9cvED_1FZGWg2AECO0J6pONo_5wVfRnZOoEoCIvbjZSL1-E9qlB_d8Q/exec";
 
   try {
     // Make a GET request using the fetch function
@@ -20,12 +20,12 @@ async function fetchAndSetData(aymarJsonData) {
     var headingCount = 0;
     var curatedBlogs = [];
     data.reverse().forEach((item, index) => {
-      const link = item.link;
-      const name = item.name;
-      const type = item.type;
+      const quote = item.quote;
       const author = item.author;
+      const book = item.book;
       const monYear = item.monYear;
       const day = item.day;
+      const type = item.type;
       if (oldMonYear != monYear) {
         if (html != "") {
           html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
@@ -36,23 +36,24 @@ async function fetchAndSetData(aymarJsonData) {
         headingCount++;
         oldMonYear = monYear;
       }
-      html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+      html += `<li>Day ${day} - From ${book} by ${author}`;
       if (item.type != "Misc") {
         html += `<span class="label_info">${type}</span>`;
       }
+      html += `<blockquote><p> ${quote} </p> </blockquote>`;
       html += `</li>`;
       singleBlog = {
         mon_year: monYear,
-        link: link,
-        type: type,
-        day: day,
+        quote: quote,
         author: author,
-        name: name,
+        day: day,
+        book: book,
+        type: type,
       };
       curatedBlogs.push(singleBlog);
     });
 
-    document.getElementById("articles").innerHTML = html;
+    document.getElementById("quotes").innerHTML = html;
 
     const collection = document.getElementsByClassName("label_info");
     for (var i = 0; i < collection.length; i++) {
@@ -69,14 +70,14 @@ async function fetchAndSetData(aymarJsonData) {
     }
 
     let currentDate = new Date();
-    curated_blog_data = {
+    curated_quote_data = {
       date_time: currentDate.toISOString(),
       blog_list: curatedBlogs,
     };
     if (!aymarJsonData) {
       aymarJsonData = {};
     }
-    aymarJsonData.curated_blog_data = curated_blog_data;
+    aymarJsonData.curated_quote_data = curated_quote_data;
     localStorage.setItem("aymarsitedata", JSON.stringify(aymarJsonData));
   } catch (error) {
     // Handle any errors that occurred during the fetch
@@ -88,20 +89,20 @@ async function displayData() {
   let aymarJsonData = JSON.parse(aymarSiteData);
   if (
     aymarJsonData &&
-    aymarJsonData.curated_blog_data &&
-    aymarJsonData.curated_blog_data.date_time &&
-    aymarJsonData.curated_blog_data.blog_list
+    aymarJsonData.curated_quote_data &&
+    aymarJsonData.curated_quote_data.date_time &&
+    aymarJsonData.curated_quote_data.blog_list
   ) {
     var html = "";
     var oldMonYear = "";
     var headingCount = 0;
-    aymarJsonData.curated_blog_data.blog_list.forEach((item) => {
-      const link = item.link;
-      const name = item.name;
-      const type = item.type;
+    aymarJsonData.curated_quote_data.blog_list.forEach((item) => {
+      const quote = item.quote;
       const author = item.author;
+      const book = item.book;
       const monYear = item.mon_year;
       const day = item.day;
+      const type = item.type;
       if (oldMonYear != monYear) {
         if (html != "") {
           html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
@@ -112,12 +113,14 @@ async function displayData() {
         headingCount++;
         oldMonYear = monYear;
       }
-      html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+      html += `<li>Day ${day} - From ${book} by ${author}`;
       if (item.type != "Misc") {
         html += `<span class="label_info">${type}</span>`;
       }
+      html += `<blockquote><p> ${quote} </p> </blockquote>`;
+      html += `</li>`;
     });
-    document.getElementById("articles").innerHTML = html;
+    document.getElementById("quotes").innerHTML = html;
     const collection = document.getElementsByClassName("label_info");
     for (var i = 0; i < collection.length; i++) {
       const label = collection[i].innerHTML;

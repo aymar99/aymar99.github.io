@@ -606,7 +606,7 @@ li {
   position: fixed;
   top: 0;
   width: 0%;
-  height: 0.4rem;
+  height: 0.2rem;
   background: linear-gradient(
     to right,
     var(--light-grain-color),
@@ -618,4 +618,15 @@ li {
   );
   z-index: 10000;
   display: none;
+}
+
+blockquote {
+  margin: 1rem;
+}
+
+blockquote p {
+  padding: 15px;
+  background: #eee;
+  border-radius: 5px;
+  color: #484848;
 }

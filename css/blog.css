@@ -11,17 +11,6 @@ figure {
   margin-bottom: 1rem;
 }
 
-blockquote {
-  margin: 1rem;
-}
-
-blockquote p {
-  padding: 15px;
-  background: #eee;
-  border-radius: 5px;
-  color: #484848;
-}
-
 pre {
   white-space: pre-wrap; /* Since CSS 2.1 */
   white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
