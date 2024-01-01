@@ -87,24 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
       jsonObject.my_blog_data &&
       jsonObject.my_blog_data.date_time
     ) {
-      // Given date string
-      // Check if the difference is within 1 day
-      if (
-        getDateDifferenceBetweenCurrentAndGivenDate(
-          jsonObject.my_blog_data.date_time,
-        ) <= 1
-      ) {
-        if (jsonObject.my_blog_data.blog_list) {
-          let html = '<ul class="blog">';
-          jsonObject.my_blog_data.blog_list.forEach((item) => {
-            html += `<li><a href="fullblog.html?title=${item.sanitised_title}">${item.actual_title}</a></li>`;
-          });
-          html += "</ul>";
-          document.getElementById("rss-feed").innerHTML = html;
-        }
-      } else {
-        fetchAndDisplay(rssFeedUrl);
+      if (jsonObject.my_blog_data.blog_list) {
+        let html = '<ul class="blog">';
+        jsonObject.my_blog_data.blog_list.forEach((item) => {
+          html += `<li><a href="fullblog.html?title=${item.sanitised_title}">${item.actual_title}</a></li>`;
+        });
+        html += "</ul>";
+        document.getElementById("rss-feed").innerHTML = html;
       }
+      fetchAndDisplay(rssFeedUrl);
     } else {
       fetchAndDisplay(rssFeedUrl);
     }

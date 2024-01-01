@@ -94,52 +94,43 @@ async function displayData() {
     var html = "";
     var oldMonYear = "";
     var headingCount = 0;
-
-    // Check if the difference is within 1 day
-    if (
-      getDateDifferenceBetweenCurrentAndGivenDate(
-        aymarJsonData.curated_blog_data.date_time,
-      ) <= 1
-    ) {
-      aymarJsonData.curated_blog_data.blog_list.forEach((item) => {
-        const link = item.link;
-        const name = item.name;
-        const type = item.type;
-        const author = item.author;
-        const monYear = item.mon_year;
-        const day = item.day;
-        if (oldMonYear != monYear) {
-          if (html != "") {
-            html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
-          } else {
-            html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
-            html += `<h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
-          }
-          headingCount++;
-          oldMonYear = monYear;
-        }
-        html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
-        if (item.type != "Misc") {
-          html += `<span class="label_info">${type}</span>`;
-        }
-      });
-      document.getElementById("articles").innerHTML = html;
-      const collection = document.getElementsByClassName("label_info");
-      for (var i = 0; i < collection.length; i++) {
-        const label = collection[i].innerHTML;
-        if (label == "Tech") {
-          collection[i].classList.add("bg-green");
-        } else if (label == "Finance") {
-          collection[i].classList.add("bg-lgrain");
-        } else if (label == "Philosophy") {
-          collection[i].classList.add("bg-dtan");
+    aymarJsonData.curated_blog_data.blog_list.forEach((item) => {
+      const link = item.link;
+      const name = item.name;
+      const type = item.type;
+      const author = item.author;
+      const monYear = item.mon_year;
+      const day = item.day;
+      if (oldMonYear != monYear) {
+        if (html != "") {
+          html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
         } else {
-          collection[i].classList.add("bg-lbrwn");
+          html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
+          html += `<h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
         }
+        headingCount++;
+        oldMonYear = monYear;
       }
-    } else {
-      fetchAndSetData(aymarJsonData);
+      html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+      if (item.type != "Misc") {
+        html += `<span class="label_info">${type}</span>`;
+      }
+    });
+    document.getElementById("articles").innerHTML = html;
+    const collection = document.getElementsByClassName("label_info");
+    for (var i = 0; i < collection.length; i++) {
+      const label = collection[i].innerHTML;
+      if (label == "Tech") {
+        collection[i].classList.add("bg-green");
+      } else if (label == "Finance") {
+        collection[i].classList.add("bg-lgrain");
+      } else if (label == "Philosophy") {
+        collection[i].classList.add("bg-dtan");
+      } else {
+        collection[i].classList.add("bg-lbrwn");
+      }
     }
+    fetchAndSetData(aymarJsonData);
   } else {
     fetchAndSetData(aymarJsonData);
   }
