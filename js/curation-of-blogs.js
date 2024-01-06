@@ -36,7 +36,7 @@ async function fetchAndSetData(aymarJsonData) {
         headingCount++;
         oldMonYear = monYear;
       }
-      html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+      html += `<li>Day ${day} <a href=${link} target="_blank">${name} - ${author}</a>`;
       if (item.type != "Misc") {
         html += `<span class="label_info">${type}</span>`;
       }
@@ -112,7 +112,7 @@ async function displayData() {
         headingCount++;
         oldMonYear = monYear;
       }
-      html += `<li>Day ${day} <a href=${link}>${name} - ${author}</a>`;
+      html += `<li>Day ${day} <a href=${link} target="_blank">${name} - ${author}</a>`;
       if (item.type != "Misc") {
         html += `<span class="label_info">${type}</span>`;
       }

@@ -1,7 +1,7 @@
 async function fetchAndSetData(aymarJsonData) {
   // Replace 'your-api-endpoint' with the actual API endpoint you want to hit
   const apiUrl =
-    "https://script.google.com/macros/s/AKfycbzZX1_xfwIfmQi9cvED_1FZGWg2AECO0J6pONo_5wVfRnZOoEoCIvbjZSL1-E9qlB_d8Q/exec";
+    "https://script.google.com/macros/s/AKfycbyOCrlBAAHZiRF_ttTeOmSNgBS-Chi304xLElHqt6ZgFzMFaALtPiZwAkQVAaqrS7anaA/exec";
 
   try {
     // Make a GET request using the fetch function
@@ -22,10 +22,11 @@ async function fetchAndSetData(aymarJsonData) {
     data.reverse().forEach((item, index) => {
       const quote = item.quote;
       const author = item.author;
-      const book = item.book;
+      const source = item.source;
       const monYear = item.monYear;
       const day = item.day;
       const type = item.type;
+      const link = item.link;
       if (oldMonYear != monYear) {
         if (html != "") {
           html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
@@ -36,7 +37,7 @@ async function fetchAndSetData(aymarJsonData) {
         headingCount++;
         oldMonYear = monYear;
       }
-      html += `<li>Day ${day} - From ${book} by ${author}`;
+      html += `<li>Day ${day} - Source : <a href="${link}" target="_blank"> ${source} - ${author}</a>`;
       if (item.type != "Misc") {
         html += `<span class="label_info">${type}</span>`;
       }
@@ -47,7 +48,7 @@ async function fetchAndSetData(aymarJsonData) {
         quote: quote,
         author: author,
         day: day,
-        book: book,
+        source: source,
         type: type,
       };
       curatedBlogs.push(singleBlog);
@@ -99,10 +100,11 @@ async function displayData() {
     aymarJsonData.curated_quote_data.blog_list.forEach((item) => {
       const quote = item.quote;
       const author = item.author;
-      const book = item.book;
+      const source = item.source;
       const monYear = item.mon_year;
       const day = item.day;
       const type = item.type;
+      const link = item.link;
       if (oldMonYear != monYear) {
         if (html != "") {
           html += `</ul><h4 id="heading-month-${headingCount}" class="heading-brwn">${monYear}</h4><ul class="articles-list">`;
@@ -113,7 +115,7 @@ async function displayData() {
         headingCount++;
         oldMonYear = monYear;
       }
-      html += `<li>Day ${day} - From ${book} by ${author}`;
+      html += `<li>Day ${day} - Source : <a href="${link}" target="_blank"> ${source} - ${author}</a>`;
       if (item.type != "Misc") {
         html += `<span class="label_info">${type}</span>`;
       }
