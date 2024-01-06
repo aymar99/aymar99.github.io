@@ -157,7 +157,6 @@ function searchKeyWords() {
         count += 1;
       }
     }
-    console.log(i + " " + count + " " + li.length);
     if (count == li.length) {
       document.getElementById("heading-month-" + i).style.display = "none";
     } else {
@@ -176,7 +175,6 @@ function handleClear(input) {
       for (var j = 0; j < li.length; j++) {
         li[j].style.display = "";
       }
-      console.log(i + " " + count + " " + li.length);
       document.getElementById("heading-month-" + i).style.display = "";
     }
   }
