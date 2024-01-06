@@ -4,7 +4,7 @@
   --oxblood-color: #6a040f;
   --dark-oxblood-color: #9e452f;
   --dark-tan-color: #ac866b;
-  --light-grain-color: #f0dab4;
+  --light-grain-color: #d4b98b;
 }
 
 body {
@@ -69,6 +69,7 @@ a {
 
 .skills {
   display: flex;
+  flex-wrap: wrap;
   margin: auto;
 }
 
@@ -78,7 +79,6 @@ a {
   padding: 8px 20px;
   font-family: Arial;
   border-radius: 1rem;
-  background-color: var(--light-backboard-color);
   margin: 0.2rem auto;
   text-align: center;
   display: table-cell;
@@ -100,7 +100,6 @@ a {
 
 .skills a:nth-child(2n) {
   color: white;
-  background-color: var(--dark-tan-color);
 }
 
 .skills a:hover {
@@ -108,7 +107,6 @@ a {
 }
 
 .nav {
-  position: fixed;
   width: 100%;
   z-index: 100;
 }
