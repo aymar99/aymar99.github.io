@@ -38,6 +38,7 @@ function setHtmlContent(data) {
   // Print each link as a clickable tag
   var headingMonthCount = 0;
   var headingYearCount = 0;
+  var noOfMonths = 0;
   var oldYear = "";
   html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
   data.reverse().forEach((item, index) => {
@@ -52,10 +53,17 @@ function setHtmlContent(data) {
       if (oldYear != "") {
         html += `</ul>`;
       }
+      if (headingYearCount != 0) {
+        html += `<input type="hidden" class="debug-input" id="input-${
+          headingYearCount - 1
+        }" value="${noOfMonths}"></input>`;
+        noOfMonths = 0;
+      }
       html += `<h4 id="heading-year-${headingYearCount}" class="heading-brwn">${year}</h4>`;
       headingYearCount++;
     }
     if (oldMon != mon) {
+      noOfMonths++;
       if (oldYear != year) {
         oldYear = year;
       } else if (oldMon != "") {
@@ -72,6 +80,9 @@ function setHtmlContent(data) {
     html += `</li>`;
   });
 
+  html += `<input type="hidden" class="debug-input" id="input-${
+    headingYearCount - 1
+  }" value="${noOfMonths}"></input>`;
   document.getElementById("articles").innerHTML = html;
 
   const collection = document.getElementsByClassName("label_info");
@@ -108,9 +119,14 @@ displayData();
 function searchKeyWords() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
+  var yearCounter = 0;
+  var monthHiddenCounter = 0;
+  var yearValue = 0;
+  var sum = 0;
   input = document.getElementById("inputSearchParam");
   filter = input.value.toUpperCase().trim();
   ulCollection = document.getElementsByClassName("articles-list");
+  var debug_input = document.getElementsByClassName("debug-input");
   for (var i = 0; i < ulCollection.length; i++) {
     li = ulCollection[i].getElementsByTagName("li");
     var count = 0;
@@ -126,8 +142,23 @@ function searchKeyWords() {
     }
     if (count == li.length) {
       document.getElementById("heading-month-" + i).style.display = "none";
+      monthHiddenCounter++;
     } else {
       document.getElementById("heading-month-" + i).style.display = "";
+    }
+    if (monthHiddenCounter == debug_input[yearCounter].value) {
+      document.getElementById("heading-year-" + yearCounter).style.display =
+        "none";
+    } else {
+      document.getElementById("heading-year-" + yearCounter).style.display = "";
+    }
+    if (
+      yearCounter < debug_input.length &&
+      i + 1 == debug_input[yearCounter].value - sum
+    ) {
+      sum += i + 1;
+      monthHiddenCounter = 0;
+      yearCounter++;
     }
   }
 }
