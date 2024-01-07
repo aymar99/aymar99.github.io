@@ -39,6 +39,7 @@ function setHtmlContent(data) {
   var html = "";
   // Print each link as a clickable tag
   var headingCount = 0;
+  html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
   data.reverse().forEach((item, index) => {
     const quote = item.quote;
     const author = item.author;
