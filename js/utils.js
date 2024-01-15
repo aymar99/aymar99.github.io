@@ -79,48 +79,53 @@ function searchKeyWords() {
   filter = input.value.toUpperCase().trim();
   ulCollection = document.getElementsByClassName("articles-list");
   var months_for_year = document.getElementsByClassName("months-for-year");
-  for (var i = 0; i < ulCollection.length; i++) {
-    li = ulCollection[i].getElementsByTagName("li");
-    var count = 0;
-    for (var j = 0; j < li.length; j++) {
-      txtValue = li[j].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        li[j].style.display = "";
+  if (filter != "") {
+    for (var i = 0; i < ulCollection.length; i++) {
+      li = ulCollection[i].getElementsByTagName("li");
+      var count = 0;
+      for (var j = 0; j < li.length; j++) {
+        txtValue = li[j].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[j].style.display = "";
+          showContent(yearCounter);
+        } else {
+          li[j].style.display = "none";
+          count += 1;
+        }
+      }
+      if (count == li.length) {
+        document.getElementById("heading-month-" + i).style.display = "none";
+        monthHiddenCounter++;
       } else {
-        li[j].style.display = "none";
-        count += 1;
+        document.getElementById("heading-month-" + i).style.display = "";
+      }
+      if (monthHiddenCounter == months_for_year[yearCounter].value) {
+        document.getElementById("heading-year-" + yearCounter).style.display =
+          "none";
+      } else {
+        document.getElementById("heading-year-" + yearCounter).style.display =
+          "";
+      }
+
+      if (
+        yearCounter < months_for_year.length &&
+        i + 1 - sum == months_for_year[yearCounter].value
+      ) {
+        sum += i + 1;
+        monthHiddenCounter = 0;
+        yearCounter++;
       }
     }
-    if (count == li.length) {
-      document.getElementById("heading-month-" + i).style.display = "none";
-      monthHiddenCounter++;
-    } else {
-      document.getElementById("heading-month-" + i).style.display = "";
-    }
-    if (monthHiddenCounter == months_for_year[yearCounter].value) {
-      document.getElementById("heading-year-" + yearCounter).style.display =
-        "none";
-    } else {
-      document.getElementById("heading-year-" + yearCounter).style.display = "";
-    }
-
-    if (
-      yearCounter < months_for_year.length &&
-      i + 1 - sum == months_for_year[yearCounter].value
-    ) {
-      sum += i + 1;
-      monthHiddenCounter = 0;
-      yearCounter++;
-    }
+  } else {
+    handleClear(input);
   }
 }
 
 function handleClear(input) {
-  if (input.value == "") {
+  if (input.value.trim() == "") {
     ulCollection = document.getElementsByClassName("articles-list");
     for (var i = 0; i < ulCollection.length; i++) {
       li = ulCollection[i].getElementsByTagName("li");
-      var count = 0;
       // Loop through all list items, and hide those who don't match the search query
       for (var j = 0; j < li.length; j++) {
         li[j].style.display = "";
@@ -130,6 +135,11 @@ function handleClear(input) {
     var months_for_year = document.getElementsByClassName("months-for-year");
     for (var i = 0; i < months_for_year.length; i++) {
       document.getElementById("heading-year-" + i).style.display = "";
+      if (i == 0) {
+        showContent(i);
+      } else {
+        hideContent(i);
+      }
     }
   }
 }
@@ -153,4 +163,19 @@ function toggleShowContent(itr) {
     content.style.display = "";
     toggleElement.innerHTML = "&#9660;";
   }
+}
+
+function hideContent(itr) {
+  var content = document.getElementById("collapsible-content-" + itr);
+  var toggleElement = document.getElementById("toggle-symbol-" + itr);
+  content.style.display = "none";
+  toggleElement.innerHTML = "&#9654;";
+}
+
+function showContent(itr) {
+  var content = document.getElementById("collapsible-content-" + itr);
+  var toggleElement = document.getElementById("toggle-symbol-" + itr);
+
+  content.style.display = "";
+  toggleElement.innerHTML = "&#9660;";
 }
