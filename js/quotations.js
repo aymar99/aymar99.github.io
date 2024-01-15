@@ -52,15 +52,23 @@ function setHtmlContent(data) {
     const year = item.year;
     if (oldYear != year) {
       if (oldYear != "") {
-        html += `</ul>`;
+        html += `</ul></div>`;
       }
       if (headingYearCount != 0) {
-        html += `<input type="hidden" class="debug-input" id="input-${
+        html += `<input type="hidden" class="months-for-year" id="input-${
           headingYearCount - 1
         }" value="${noOfMonths}"></input>`;
         noOfMonths = 0;
       }
-      html += `<h4 id="heading-year-${headingYearCount}" class="heading-brwn">${year}</h4>`;
+      if (headingYearCount == 0) {
+        html += `<h4 id="heading-year-${headingYearCount}" class="heading-brwn">${year} <button class="collapsible" type="button" id="collapsible-${headingYearCount}">
+          <span id="toggle-symbol-${headingYearCount}">&#9660;</span>
+        </button></h4><div id="collapsible-content-${headingYearCount}">`;
+      } else {
+        html += `<h4 id="heading-year-${headingYearCount}" class="heading-brwn">${year} <button class="collapsible" type="button" id="collapsible-${headingYearCount}">
+          <span id="toggle-symbol-${headingYearCount}">&#9654;</span>
+        </button></h4><div id="collapsible-content-${headingYearCount}" style="display:none">`;
+      }
       headingYearCount++;
     }
     if (oldMon != mon) {
@@ -82,7 +90,7 @@ function setHtmlContent(data) {
     html += `</li>`;
   });
 
-  html += `<input type="hidden" class="debug-input" id="input-${
+  html += `<input type="hidden" class="months-for-year" id="input-${
     headingYearCount - 1
   }" value="${noOfMonths}"></input>`;
   document.getElementById("quotes").innerHTML = html;
@@ -100,6 +108,7 @@ function setHtmlContent(data) {
       collection[i].classList.add("bg-lbrwn");
     }
   }
+  addCollapseForYears();
 }
 async function displayData() {
   let aymarSiteData = localStorage.getItem("aymarsitedata");
@@ -118,64 +127,3 @@ async function displayData() {
 }
 // Call the function to initiate the asynchronous fetch
 displayData();
-function searchKeyWords() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  var yearCounter = 0;
-  var monthHiddenCounter = 0;
-  var yearValue = 0;
-  var sum = 0;
-  input = document.getElementById("inputSearchParam");
-  filter = input.value.toUpperCase().trim();
-  ulCollection = document.getElementsByClassName("articles-list");
-  var debug_input = document.getElementsByClassName("debug-input");
-  for (var i = 0; i < ulCollection.length; i++) {
-    li = ulCollection[i].getElementsByTagName("li");
-    var count = 0;
-    // Loop through all list items, and hide those who don't match the search query
-    for (var j = 0; j < li.length; j++) {
-      txtValue = li[j].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        li[j].style.display = "";
-      } else {
-        li[j].style.display = "none";
-        count += 1;
-      }
-    }
-    if (count == li.length) {
-      document.getElementById("heading-month-" + i).style.display = "none";
-      monthHiddenCounter++;
-    } else {
-      document.getElementById("heading-month-" + i).style.display = "";
-    }
-    if (monthHiddenCounter == debug_input[yearCounter].value) {
-      document.getElementById("heading-year-" + yearCounter).style.display =
-        "none";
-    } else {
-      document.getElementById("heading-year-" + yearCounter).style.display = "";
-    }
-    if (
-      yearCounter < debug_input.length &&
-      i + 1 == debug_input[yearCounter].value - sum
-    ) {
-      sum += i + 1;
-      monthHiddenCounter = 0;
-      yearCounter++;
-    }
-  }
-}
-
-function handleClear(input) {
-  if (input.value == "") {
-    ulCollection = document.getElementsByClassName("articles-list");
-    for (var i = 0; i < ulCollection.length; i++) {
-      li = ulCollection[i].getElementsByTagName("li");
-      var count = 0;
-      // Loop through all list items, and hide those who don't match the search query
-      for (var j = 0; j < li.length; j++) {
-        li[j].style.display = "";
-      }
-      document.getElementById("heading-month-" + i).style.display = "";
-    }
-  }
-}
