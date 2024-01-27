@@ -95,7 +95,10 @@ function setHtmlContent(data) {
 
   const collection = document.getElementsByClassName("label_info");
   for (var i = 0; i < collection.length; i++) {
-    const label = collection[i].innerHTML;
+    let label = collection[i].innerHTML;
+    collection[i].addEventListener("click", (event) =>
+      setLabelInSearchBar(label),
+    );
     if (label == "Tech") {
       collection[i].classList.add("bg-green");
     } else if (label == "Finance") {

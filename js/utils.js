@@ -179,3 +179,9 @@ function showContent(itr) {
   content.style.display = "";
   toggleElement.innerHTML = "&#9660;";
 }
+
+function setLabelInSearchBar(label) {
+  const inputSearchParamBar = document.getElementById("inputSearchParam");
+  inputSearchParamBar.value = label;
+  searchKeyWords();
+}
