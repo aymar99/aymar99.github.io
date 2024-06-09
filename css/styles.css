@@ -7,12 +7,6 @@
   --light-grain-color: #d4b98b;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 1.5rem;
-  }
-}
-
 html, body {
   margin: 0;
   padding: 0;
@@ -30,12 +24,19 @@ body {
   padding-bottom: 1rem;
 }
 
+@media (min-width: 768px) {
+  body {
+    font-size: 1.5rem;
+  }
+}
+
 .content {
   margin: auto;
   width: 92%;
   padding-left: 3%;
   padding-right: 3%;
   overflow: auto;
+  padding-bottom: 2rem;
 }
 ul {
   list-style: none;
