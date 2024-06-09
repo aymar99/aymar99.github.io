@@ -7,6 +7,18 @@
   --light-grain-color: #d4b98b;
 }
 
+@media (min-width: 768px) {
+  html {
+    font-size: 1.5rem;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
