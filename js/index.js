@@ -14,6 +14,14 @@ collapsibleElement.addEventListener("click", function () {
   }
 });
 document.addEventListener("DOMContentLoaded", function () {
+  const birthDate = new Date(1999, 2, 26); 
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  document.getElementById("age").textContent = age;
   const rssFeedUrl = "https://proxy.cors.sh/https://aymar.substack.com/feed";
   async function fetchAndDisplay(url) {
     let aymarSiteData = localStorage.getItem("aymarsitedata");

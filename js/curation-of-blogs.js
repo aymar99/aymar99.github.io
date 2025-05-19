@@ -22,9 +22,15 @@ async function fetchAndSetData(aymarJsonData) {
     if (!aymarJsonData) {
       aymarJsonData = {};
     }
-    aymarJsonData.curated_blog_data = curated_blog_data;
-    localStorage.setItem("aymarsitedata", JSON.stringify(aymarJsonData));
-    setHtmlContent(data);
+    console.log("TEST");
+    if (aymarJsonData.curated_blog_data != curated_blog_data) {
+      console.log("Refreshing content");
+      aymarJsonData.curated_blog_data = curated_blog_data;
+      localStorage.setItem("aymarsitedata", JSON.stringify(aymarJsonData));
+      setHtmlContent(data);
+    } else {
+      console.log("Not refreshing content");
+    }
   } catch (error) {
     // Handle any errors that occurred during the fetch
     console.error("Fetch error:", error);
@@ -32,6 +38,8 @@ async function fetchAndSetData(aymarJsonData) {
 }
 
 function setHtmlContent(data) {
+  let typeColorMapping = new Map();
+  const colors = ["bg-green", "bg-lgrain", "bg-dtan", "bg-lbrwn"];
   var oldMon = "";
   var oldYear = "";
   var html = "";
@@ -40,7 +48,20 @@ function setHtmlContent(data) {
   var headingYearCount = 0;
   var noOfMonths = 0;
   var oldYear = "";
+  let uniqueTypes = new Set();
+  index = 0;
+  data.forEach((item) => uniqueTypes.add(item.type, ""));
+  uniqueTypes.forEach((type) => {
+    if (index == colors.length - 1) {
+      index = 0;
+    }
+    html += `<div class="label_info">${type}</div>`;
+    if (!typeColorMapping.has(type)) {
+      typeColorMapping.set(type, colors[index++]);
+    }
+  });
   html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
+  html += `<h3 class="heading-green">What i read in ...</h3>`;
   data.reverse().forEach((item, index) => {
     const link = item.link;
     const name = item.name;
@@ -83,7 +104,7 @@ function setHtmlContent(data) {
     }
     html += `<li>Day ${day} <a href=${link} target="_blank">${name} - ${author}</a>`;
     if (item.type != "Misc") {
-      html += `<span class="label_info">${type}</span>`;
+      html += `<div class="label_info">${type}</div>`;
     }
     html += `</li>`;
   });
@@ -97,17 +118,9 @@ function setHtmlContent(data) {
   for (var i = 0; i < collection.length; i++) {
     let label = collection[i].innerHTML;
     collection[i].addEventListener("click", (event) =>
-      setLabelInSearchBar(label),
+      setLabelInSearchBar(label)
     );
-    if (label == "Tech") {
-      collection[i].classList.add("bg-green");
-    } else if (label == "Finance") {
-      collection[i].classList.add("bg-lgrain");
-    } else if (label == "Philosophy") {
-      collection[i].classList.add("bg-dtan");
-    } else {
-      collection[i].classList.add("bg-lbrwn");
-    }
+    collection[i].classList.add(typeColorMapping.get(label));
   }
   addCollapseForYears();
 }
