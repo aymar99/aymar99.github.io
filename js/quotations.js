@@ -32,14 +32,27 @@ async function fetchAndSetData(aymarJsonData) {
 }
 
 function setHtmlContent(data) {
+   let typeColorMapping = new Map();
+  const colors = ["bg-green", "bg-lgrain", "bg-dtan", "bg-lbrwn"];
   var oldMon = "";
   var oldYear = "";
+  var html = "";
   var headingMonthCount = 0;
   var headingYearCount = 0;
   var noOfMonths = 0;
-  var html = "";
-  // Print each link as a clickable tag
-  var headingCount = 0;
+  var oldYear = "";
+  let uniqueTypes = new Set();
+  index = 0;
+  data.forEach((item) => uniqueTypes.add(item.type, ""));
+  uniqueTypes.forEach((type) => {
+    if (index == colors.length - 1) {
+      index = 0;
+    }
+    html += `<div class="label_info">${type}</div>`;
+    if (!typeColorMapping.has(type)) {
+      typeColorMapping.set(type, colors[index++]);
+    }
+  });
   html += `<input type="search" id="inputSearchParam" onsearch=handleClear(this) onkeyup="searchKeyWords()" placeholder="Search for keywords.."/>`;
   data.reverse().forEach((item, index) => {
     const quote = item.quote;
@@ -84,7 +97,7 @@ function setHtmlContent(data) {
     }
     html += `<li>Day ${day} - Source : <a href="${link}" target="_blank"> ${source} - ${author}</a>`;
     if (item.type != "Misc") {
-      html += `<span class="label_info">${type}</span>`;
+      html += `<div class="label_info">${type}</div>`;
     }
     html += `<blockquote><p> ${quote} </p> </blockquote>`;
     html += `</li>`;
