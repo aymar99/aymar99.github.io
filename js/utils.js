@@ -87,6 +87,7 @@ function searchKeyWords() {
         txtValue = li[j].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
           li[j].style.display = "";
+          console.log(yearCounter)
           showContent(yearCounter);
         } else {
           li[j].style.display = "none";

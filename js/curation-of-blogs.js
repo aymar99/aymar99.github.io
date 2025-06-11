@@ -22,7 +22,6 @@ async function fetchAndSetData(aymarJsonData) {
     if (!aymarJsonData) {
       aymarJsonData = {};
     }
-    console.log("TEST");
     if (aymarJsonData.curated_blog_data != curated_blog_data) {
       console.log("Refreshing content");
       aymarJsonData.curated_blog_data = curated_blog_data;
@@ -43,7 +42,6 @@ function setHtmlContent(data) {
   var oldMon = "";
   var oldYear = "";
   var html = "";
-  // Print each link as a clickable tag
   var headingMonthCount = 0;
   var headingYearCount = 0;
   var noOfMonths = 0;
