@@ -1,3 +1,29 @@
+(function () {
+  const saved = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const theme = saved || (prefersDark ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+
+function _injectThemeToggle() {
+  const bar = document.querySelector(".bar");
+  if (!bar) return;
+  const btn = document.createElement("button");
+  btn.id = "theme-toggle";
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  btn.textContent = isDark ? "☀️" : "🌙";
+  btn.addEventListener("click", function () {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    btn.textContent = next === "dark" ? "☀️" : "🌙";
+  });
+  bar.appendChild(btn);
+}
+
+document.addEventListener("DOMContentLoaded", _injectThemeToggle);
+
 function getDateDifferenceBetweenCurrentAndGivenDate(dateString) {
   let givenDate = new Date(dateString);
   let currentDate = new Date();

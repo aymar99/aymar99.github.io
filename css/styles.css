@@ -5,6 +5,20 @@
   --dark-oxblood-color: #9e452f;
   --dark-tan-color: #ac866b;
   --light-grain-color: #d4b98b;
+  --surface-color: white;
+  --border-color: rgb(225, 225, 225);
+  --blockquote-bg: #eee;
+  --blockquote-color: #484848;
+}
+
+[data-theme="dark"] {
+  --surface-color: #262a1c;
+  --border-color: #3a4228;
+  --blockquote-bg: #262a1c;
+  --blockquote-color: #c8d4b8;
+  --light-backboard-color: #7ab89a;
+  --oxblood-color: #c47850;
+  --dark-tan-color: #c4a870;
 }
 
 html,
@@ -22,7 +36,14 @@ body {
   text-align: center;
   --color: rgba(30, 30, 30);
   --bgColor: #ffff;
+  color: var(--color);
+  background-color: var(--bgColor);
   padding-bottom: 1rem;
+}
+
+[data-theme="dark"] body {
+  --color: #dde8d0;
+  --bgColor: #1a1c14;
 }
 
 @media (min-width: 1500px) {
@@ -104,7 +125,7 @@ a {
 }
 
 .skills a {
-  box-shadow: 0.1rem 0.1rem white;
+  box-shadow: 0.1rem 0.1rem var(--surface-color);
   color: white;
   padding: 8px 20px;
   font-family: Arial;
@@ -122,7 +143,7 @@ a {
   margin: 0.5em auto;
   margin-left: 0.5rem;
   cursor: pointer;
-  box-shadow: 0.1rem 0.1rem white;
+  box-shadow: 0.1rem 0.1rem var(--surface-color);
   color: white;
   padding: 0.75px 15px;
   font-family: Arial;
@@ -138,6 +159,16 @@ a {
 
 .skills a:hover {
   box-shadow: 0 0 11px rgba(33, 33, 33, 0.3);
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 0.4rem;
+  line-height: 1;
+  align-self: center;
 }
 
 .nav {
@@ -248,7 +279,7 @@ a {
   content: "";
   grid-column: 1;
   grid-row: 1 / span 20;
-  background: rgb(225, 225, 225);
+  background: var(--border-color);
   border-radius: calc(var(--line-w) / 2);
 }
 
@@ -328,7 +359,7 @@ a {
   position: absolute;
   width: 2rem;
   aspect-ratio: 1;
-  background: var(--bgColor);
+  background: var(--bgColor, white);
   border: 0.3rem solid var(--accent-color);
   border-radius: 50%;
   top: 50%;
@@ -340,7 +371,7 @@ a {
 /* title descr */
 .career-journey li .title,
 .career-journey li .descr {
-  background: var(--bgColor);
+  background: var(--bgColor, white);
   position: relative;
   padding-inline: 1.5rem;
 }
@@ -548,7 +579,8 @@ img {
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  background-color: white;
+  background-color: var(--surface-color);
+  color: var(--color);
   padding: 12px 20px 12px 40px;
   margin: 0.5rem;
 }
@@ -652,9 +684,9 @@ blockquote {
 
 blockquote p {
   padding: 15px;
-  background: #eee;
+  background: var(--blockquote-bg);
   border-radius: 5px;
-  color: #484848;
+  color: var(--blockquote-color);
 }
 
 .description {
@@ -663,4 +695,12 @@ blockquote p {
 
 #articles {
   margin: 0.5rem;
+}
+
+.last-updated {
+  font-size: 0.75rem;
+  color: var(--light-text-color, #888);
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+  margin-top: 2rem;
 }
