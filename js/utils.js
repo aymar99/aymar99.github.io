@@ -1,25 +1,27 @@
 (function () {
   const saved = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const theme = saved || (prefersDark ? "dark" : "light");
+  const theme = saved || "light";
   document.documentElement.setAttribute("data-theme", theme);
 })();
 
 function _injectThemeToggle() {
-  const bar = document.querySelector(".bar");
-  if (!bar) return;
+  const heading = document.querySelector("h1.heading-green");
+  if (!heading) return;
   const btn = document.createElement("button");
   btn.id = "theme-toggle";
+  btn.title = "Toggle dark/light mode";
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  btn.textContent = isDark ? "☀️" : "🌙";
-  btn.addEventListener("click", function () {
+  btn.textContent = isDark ? "🌞" : "🌙";
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     const current = document.documentElement.getAttribute("data-theme");
     const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
-    btn.textContent = next === "dark" ? "☀️" : "🌙";
+    btn.textContent = next === "dark" ? "🌞" : "🌙";
   });
-  bar.appendChild(btn);
+  heading.appendChild(btn);
 }
 
 document.addEventListener("DOMContentLoaded", _injectThemeToggle);
