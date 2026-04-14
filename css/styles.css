@@ -65,6 +65,14 @@ a {
   content: "\1F4F8";
 }
 
+.contact-links li:nth-child(6)::before {
+  content: "\1F3AC";
+}
+
+.contact-links li:nth-child(7)::before {
+  content: "\1F4DA";
+}
+
 .contact-links li:nth-child(3)::before {
   content: "\1F4BB";
 }
